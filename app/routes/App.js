@@ -14,7 +14,7 @@ export default class App extends React.Component {
     children: PropTypes.element.isRequired,
     dispatch: PropTypes.func.isRequired,
     error: PropTypes.string,
-    username: PropTypes.string.isRequired,
+    username: PropTypes.string,
     users: PropTypes.object.isRequired
   }
 

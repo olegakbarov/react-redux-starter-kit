@@ -7,7 +7,7 @@ export default class Header extends React.Component {
   static propTypes = {
     logout: PropTypes.func.isRequired,
     router: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object
   }
 
   _onLogout(event) {
