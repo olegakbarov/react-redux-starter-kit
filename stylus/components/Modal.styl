@@ -1,0 +1,40 @@
+.modal-close
+  position absolute
+  right 20px
+  top 20px
+  &:hover
+    cursor pointer
+    transition transform .2s linear
+    transform scale(1.1)
+    color #000
+
+.ReactModal__Overlay
+  background-color rgba(255, 255, 255, 0.75)
+
+.ReactModal__Content
+  position absolute
+  max-width 500px
+  margin 0 auto
+  top 10%
+  left 40px
+  right 40px
+  border 1px solid #ccc
+  background #fff
+  overflow auto
+  -webkit-overflow-scrolling touch
+  border-radius 4px
+  outline: none
+  padding: 20px
+
+@media (max-width: 768px) {
+  .ReactModal__Content {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+  }
+}
+
+.modal__title
+  text-align center
