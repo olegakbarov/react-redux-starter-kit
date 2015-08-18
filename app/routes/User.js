@@ -26,9 +26,9 @@ export default class User extends React.Component {
   }
   static fillStore(redux, nextState) {
     return Promise.all([
-        redux.dispatch(fetchSingleUser(nextState.params.id)),
-        redux.dispatch(fetchProfile())
-      ]);
+      redux.dispatch(fetchSingleUser(nextState.params.id)),
+      redux.dispatch(fetchProfile())
+    ]);
   }
   openLessonModal = () => {
     this.setState({ lessonModalIsOpen: true });
