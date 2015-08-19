@@ -42,23 +42,22 @@ export default class Dashboard extends React.Component {
               <td>
                 <small>{post.title}</small>
               </td>
-              <td>
-                <small>{post.tags}</small>
-              </td>
-              <td>
+
+              <td className="table-button">
                 <Link to={`/dashboard/add/${post.id}`}>
-                  <button
-                    className="btn btn-primary btn-small"
+                  <a
                     >
                     Edit
-                  </button>
+                  </a>
                 </Link>
-              <button
-                className="btn btn-danger btn-small"
+              </td>
+
+              <td className="table-button">
+              <a
                 onClick={() => this.togglePublishPost(post.id, post.published)}
-                >
+              >
                 Unpublish
-              </button>
+              </a>
               </td>
             </tr>
           );
@@ -72,23 +71,20 @@ export default class Dashboard extends React.Component {
               <td>
                 <small>{post.title}</small>
               </td>
-              <td>
-                <small>{post.tags}</small>
-              </td>
-              <td>
+
+              <td className="table-button">
                 <Link to={`/dashboard/add/${post.id}`}>
-                  <button
-                    className="btn btn-primary btn-small"
-                    >
+                  <a>
                     Edit
-                  </button>
+                  </a>
                 </Link>
-              <button
-                className="btn btn-danger btn-small"
-                onClick={() => this.togglePublishPost(post.id, post.published)}
+              <td className="table-button">
+                <a
+                  onClick={() => this.togglePublishPost(post.id, post.published)}
                 >
-                Publish
-              </button>
+                  Publish
+                </a>
+              </td>
               </td>
             </tr>
           );
@@ -97,13 +93,13 @@ export default class Dashboard extends React.Component {
     return (
       <div className="container-fluid content-wrapper">
         <h3>Published posts</h3>
-        <table className="table table-striped">
+        <table className="table">
           <tbody>
             {publishedPosts}
           </tbody>
         </table>
         <h3>Unpublished posts</h3>
-        <table className="table table-striped">
+        <table className="table">
           <tbody>
             {unpublishedPosts}
           </tbody>

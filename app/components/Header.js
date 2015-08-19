@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import Icon from 'react-evil-icons';
 import NavItem from './NavItem';
 
 export default class Header extends React.Component {
@@ -10,10 +9,10 @@ export default class Header extends React.Component {
     user: PropTypes.object
   }
 
-  _onLogout(event) {
+  handleLogout = e => {
     const { logout, router } = this.props;
 
-    event.preventDefault();
+    e.preventDefault();
 
     logout(router);
   }
@@ -22,17 +21,12 @@ export default class Header extends React.Component {
     const user = this.props.user;
 
     if (user) {
-      const { firstname, lastname, username } = user;
-      const name = [firstname, lastname].join(' ').trim() ||
-                   username.trim() ||
-                   'Mr. Anonymous';
-
       return (
         <ul className="nav navbar-nav navbar-right">
           <NavItem to="/">Blog</NavItem>
           <NavItem to="/dashboard">Dashboard</NavItem>
-          <NavItem to="/profile">{name}</NavItem>
-          <NavItem to="/logout" onClick={::this._onLogout}>Logout</NavItem>
+          <NavItem to="/profile">Profile</NavItem>
+          <NavItem to="/logout" onClick={this.handleLogout}>Logout</NavItem>
         </ul>
       );
     } else {
@@ -57,14 +51,16 @@ export default class Header extends React.Component {
               data-target="#main-nav"
             >
               <span className="sr-only">Toggle navigation</span>
-              <Icon name="ei-navicon" size="m" />
             </button>
 
             <Link
               to="/"
               activeClassName=""
-              className="brand"
-              title="Get Expert">—</Link>
+              className="navbar-brand"
+              title="BLOG"
+            >
+              Reblog
+            </Link>
           </div>
 
           <div className="collapse navbar-collapse" id="main-nav">

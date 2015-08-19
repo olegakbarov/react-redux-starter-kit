@@ -15,9 +15,12 @@ import {
   SAVE_PROFILE_FAILURE
 } from '../constants/actions';
 
-import * as api from '../api/app';
 import cookie from '../utils/cookie';
 import redirectBackAfter from '../utils/redirectBackAfter';
+import axios from 'axios';
+import getHeaders from './utils/utils.js';
+
+const baseUrl = 'http://localhost:1337';
 
 function saveAuthToken(token) {
   const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
@@ -29,24 +32,28 @@ function saveAuthToken(token) {
   });
 }
 
-export function signup(email, password, username, shortDescription, router) {
+export function signup(email, password, router) {
   return async (dispatch) => {
     try {
-      const { token, user } = await api.signup(
+      const { data: { token, user } } = await axios.post(`${baseUrl}/signup`, {
         email,
-        password,
-        username,
-        shortDescription
-      );
+        password
+      });
 
       saveAuthToken(token);
 
       dispatch({ type: LOGIN_SUCCESS, token });
       dispatch({ type: FETCH_PROFILE_SUCCESS, user });
       dispatch({ type: SIGNUP_SUCCESS });
+      // TODO: don't do it here.
       router.transitionTo('/profile');
     } catch (error) {
-      dispatch({ type: SIGNUP_FAILURE, error });
+      dispatch({
+        type: SIGNUP_FAILURE,
+        error: (error.status === 409)
+          ? Error('User with such an email already exists')
+          : Error('Unknown error occured :-(. Please, try again later.')
+      });
     }
   };
 }
@@ -54,7 +61,10 @@ export function signup(email, password, username, shortDescription, router) {
 export function login(email, password, router) {
   return async (dispatch) => {
     try {
-      const { token, user } = await api.login(email, password);
+      const { data: { token, user } } = await axios.post(`${baseUrl}/login`, {
+        email,
+        password
+      });
 
       saveAuthToken(token);
 
@@ -63,9 +73,13 @@ export function login(email, password, router) {
 
       const { query } = router.state.location;
       const redirectTo = (query && query.redirectTo) ? query.redirectTo : '/';
-
+      // TODO: don't do it here.
       router.transitionTo(redirectTo);
-    } catch (error) {
+    } catch (err) {
+      let error = (err.status === 401)
+        ? Error('Incorrect email or password')
+        : Error('Unknown error occured :-(. Please, try again later.');
+
       dispatch({ type: LOGIN_FAILURE, error });
     }
   };
@@ -88,7 +102,8 @@ export function fetchProfile() {
 
       if (!token || users[userId]) { return; }
 
-      const user = await api.fetchProfile(token);
+      const headers = getHeaders(token);
+      const user = (await axios.get(`${baseUrl}/profile`, { headers })).data;
 
       dispatch({ type: FETCH_PROFILE_SUCCESS, user });
     } catch (error) {
@@ -99,16 +114,25 @@ export function fetchProfile() {
 
 export function saveProfile(user) {
   return async (dispatch, getState) => {
-    const { auth: { token, userId } } = getState();
+    const { auth: { token, username } } = getState();
 
-    dispatch({ type: SAVE_PROFILE, userId, user });
+    dispatch({ type: SAVE_PROFILE, username, user });
 
     try {
-      user = await api.saveProfile(token, user);
+      const headers = getHeaders(token);
 
-      dispatch({ type: SAVE_PROFILE_SUCCESS, userId, user });
+      user = (await axios.put(
+        `${baseUrl}/profile`,
+         user,
+        { headers })
+      ).data;
+
+      dispatch({ type: SAVE_PROFILE_SUCCESS, username, user });
     } catch (error) {
-      dispatch({ type: SAVE_PROFILE_FAILURE, error });
+      dispatch({
+        type: SAVE_PROFILE_FAILURE,
+        error: Error('Unknown error occured :-(. Please, try again later.')
+      });
     }
   };
 }

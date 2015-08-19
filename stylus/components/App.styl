@@ -2,29 +2,20 @@
 $blue = #00c6ff
 $navy = #2491E2
 
-
-// bugfix! =D
-.icon__cnt
-  transform: none
-
-.btn
-  margin 0px 10px
-  font 13px/15px 'Montserrat', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-  text-transform uppercase
-
-.btn-default
-  color #777
-  &:hover
-    background-color #fff
-
 body
   font-family "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
   font-weight 300
-  color #777
+  color #4e4b4b
   min-width 400px
 
 h1, h2, h3, h4, h5
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  color #000000
+
+h2
+  line-height 50px
+p
+  line-height: 22px;
+  font-size: 16px;
 
 // Common
 .spinner-basic
@@ -42,6 +33,9 @@ h1, h2, h3, h4, h5
 
 .inline-first
   margin-left 0px
+
+.centered
+  text-align center
 
 .form-panel
   max-width 550px
@@ -62,7 +56,6 @@ img
 label
   cursor pointer
 
-
 .navbar
   border-radius 0
   border 0
@@ -74,26 +67,14 @@ label
 .navbar-header
   padding 14px 0
 
+.navbar-brand
+  line-height 50px
+  font-size 23px
+
 a
   &:hover,
   &:focus
     text-decoration none
-
-.brand
-  display block
-  font-size 3.2em
-  letter-spacing -1px
-  font-weight 700
-  color #005AC9
-  user-select none
-  background linear-gradient(90deg, #00c6ff 10%, #0072ff 90%)
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  transition transform .1s linear
-  text-shadow 0px 6px 10px rgba(150, 150, 150, .3)
-
-  &:active
-    transform scale(.93)
 
 .navbar-nav > li > a
   line-height 100px
@@ -106,7 +87,6 @@ a
   color #000
 
 .btn
-  border-radius 50px
   min-width 130px
   &.btn-xs
     min-width 50px
@@ -142,169 +122,8 @@ a
   display block
   fill #fff
 
-.expert-name
-  font 23px/23px "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-  margin 10px 0 7px
-
-.expert-description
-  color $blue
-  font 10px/14px 'Montserrat', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-  margin 4px 0
-  text-transform uppercase
-
-
-
-// Single user
-.single-user-name,
-.single-user-spec,
-.single-user-city
-  text-align center
-  margin 0 auto
-  display block
-
-.single-user-name
-  margin 20px 30px 5px
-  font 4rem/5rem "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-  text-align center
-
-.single-user-spec
-  color $blue
-  font 15px/25px 'Montserrat', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-  text-transform uppercase
-
-.single-user-city
-  font 15px/17px "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-  .icon
-    margin-bottom -5px
-
-.single-user-buttons
-  width 130px
-  display block
-  margin 20px auto
-
-article.single-user-about
-  margin 30px auto
-  max-width 600px
-
-.single-user-subtitle
-  font 15px/30px 'Montserrat', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-  text-transform uppercase
-
-.single-user-rating
-  svg
-    fill #D915D9
-
-.single-user-points
-  display inline-block
-  height 4rem
-  width 25%
-  text-align center
-  vertical-align middle
-
-
-
-// Messages
-.thread-item
-  &:hover
-    transition all .5s ease
-    color #0072ff
-    cursor pointer
-
-.single-message
-  margin 3px 0
-
-a.message-author
-  font 14px/14px 'Montserrat', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-
-
-// Footer
-.footer-list-group
-  margin 0
-  padding 0
-  text-align left
-.footer-li-item
-  text-transform uppercase
-  font 12px/12px 'Montserrat', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-  list-style none
-  padding 3px
-  margin-left 20px
-  display inline-block
-  &:first-child
-    margin-left 0px
+// table
+.table-button
+  width 80px
   &:hover
     cursor pointer
-    color $navy
-
-
-// userpics
-.avatar
-  float left
-  width 80px
-  height 80px
-  border-radius 80px
-
-.avatar-no-image
-  background-color #eaeaea
-
-  svg
-    fill #ccc
-
-.avatar-user-profile
-  width 80px
-  height 80px
-  border-radius 80px
-
-.avatar-single-user
-  display block
-  width 250px
-  height 250px
-  border-radius 250px
-  border 2px solid #fff
-  margin 0 auto
-  background-color #eaeaea
-  text-align center
-  box-shadow 3px #ccc
-  svg
-    fill #ccc
-
-
-.btn-block.margin-top-20
-  margin-left 0
-  line-height 30px
-
-
-// this is crap but it's temporary, so i did it
-@media (max-width 767px)
-  .navbar-nav>li>a
-    line-height 50px
-    text-align center
-    font-size 30px
-    border-bottom 1px solid #eaeaea
-
-  .navbar-default .navbar-toggle
-    border none
-
-  .collapse.navbar-collapse
-    display none
-  button.navbar-toggle.collapsed:hover,button.navbar-toggle.collapsed:active
-    background-color #fff
-
-.btn-requrest
-  margin 0 auto
-
-.btn-small
-  min-width 30px!important
-  font-size 11px
-
-// Error Component
-.errorMessage
-  position fixed
-  width 100%
-  height 25px
-  text-align center
-  font-size 11px
-  text-transform uppercase
-  color white
-  line-height 25px
-  background-color red
-  z-index 100

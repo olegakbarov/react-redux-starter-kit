@@ -6,15 +6,21 @@ import {
   SAVE_POST_SUCCESS,
   SAVE_POST_FAILURE
 } from '../constants/actions';
-import * as api from '../api/app';
+import axios from 'axios';
+
+const baseUrl = 'http://localhost:1337';
+import getHeaders from './utils/utils.js';
 
 export function fetchPublishedPosts() {
   return async (dispatch) => {
     try {
-      const posts = await api.fetchPublishedPosts();
+      const posts = (await axios.get(`${baseUrl}/posts`)).data;
       dispatch({ type: LOAD_PUBLISHED_POSTS_SUCCESS, posts });
     } catch (error) {
-      dispatch({ type: LOAD_PUBLISHED_POSTS_FAILURE, error });
+      dispatch({
+        type: LOAD_PUBLISHED_POSTS_FAILURE,
+        error: Error('Unknown error occured :-(. Please, try again later.')
+      });
     }
   };
 }
@@ -23,10 +29,18 @@ export function fetchUnpublishedPosts() {
   return async (dispatch, getState) => {
     try {
       const { auth: { token } } = getState();
-      const posts = await api.fetchUnpublishedPosts(token);
+      let headers = getHeaders(token);
+
+      const posts = (await axios.get(
+        `${baseUrl}/posts/drafts`,
+        { headers })).data;
+
       dispatch({ type: LOAD_UNPUBLISHED_POSTS_SUCCESS, posts });
     } catch (error) {
-      dispatch({ type: LOAD_UNPUBLISHED_POSTS_FAILURE, error });
+      dispatch({
+        type: LOAD_UNPUBLISHED_POSTS_FAILURE,
+        error: Error('Unknown error occured :-(. Please, try again later.')
+      });
     }
   };
 }
@@ -35,10 +49,23 @@ export function savePost(post) {
   return async (dispatch, getState) => {
     try {
       const { auth: { token } } = getState();
-      post = await api.savePost(token, post);
+
+      let headers = getHeaders(token);
+
+      if (post.id) {
+        post = (await axios.put(`${baseUrl}/posts/${post.id}`, post, {
+          headers
+        })).data;
+      } else {
+        post = (await axios.post(`${baseUrl}/posts`, post, { headers })).data;
+      }
+
       dispatch({ type: SAVE_POST_SUCCESS, post });
     } catch (error) {
-      dispatch({ type: SAVE_POST_FAILURE, error });
+      dispatch({
+        type: SAVE_POST_FAILURE,
+        error: Error('Unknown error occured :-(. Please, try again later.')
+      });
     }
   };
 }

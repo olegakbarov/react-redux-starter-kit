@@ -28,20 +28,15 @@ export default class PostEditor extends React.Component {
     });
   }
   render() {
-    let { id, title, content, tags } = this.state.post;
+    let { title, content, tags } = this.state.post;
     return (
       <div className="container-fluid content-wrapper">
+      <div className="col-sm-6">
         <Link to={'/dashboard'}>
           <p>Back to dashboard</p>
         </Link>
         <div className="from-group">
-          <input
-            className="form-control"
-            type="text"
-            value={`https://get.expert/blog/${id}`}
-            placeholder="id"
-            disabled
-          />
+
           <label>Post title</label>
           <input
             className="form-control"
@@ -77,6 +72,11 @@ export default class PostEditor extends React.Component {
             >Publish</button>
           </div>
         </div>
+      </div>
+
+      <div className="col-sm-6">
+      </div>
+
       </div>
     );
   }

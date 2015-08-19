@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import Icon from 'react-evil-icons';
 import { fetchPublishedPosts } from '../actions/blog';
 
 @connect(state => ({
@@ -20,13 +19,10 @@ export default class Posts extends React.Component {
     .filter(item => item.published)
     .map(post => {
       return (
-        <div className="panel panel-default">
           <div className="panel-body">
             <h2>{post.title}</h2>
             <p>{post.content}</p>
-            <small>{post.tags}</small>
           </div>
-        </div>
       );
     });
     return (
@@ -36,10 +32,11 @@ export default class Posts extends React.Component {
           {posts}
           </div>
           <div className="col-sm-3">
-            <div className="panel panel-default">
-              <div className="panel-body">
-                <h4>About author</h4>
-              </div>
+            <div className="panel-body">
+              <h4>Brought to you by:</h4>
+              <a href="https://twitter.com/faergeek">@faergeek</a>
+              <br />
+              <a href="https://twitter.com/olegakbarov">@olegakbarov</a>
             </div>
           </div>
         </div>

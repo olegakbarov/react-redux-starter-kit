@@ -1,6 +1,10 @@
 import {
+  ROUTER_STATE_CHANGE,
+
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+
+  SIGNUP_FAILURE,
 
   LOGOUT,
 
@@ -8,25 +12,31 @@ import {
 } from '../constants/actions';
 
 const initialState = {
-  lastError: null,
+  error: null, // last occured error
   token: null,
   username: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case ROUTER_STATE_CHANGE:
+      return {
+        ...state,
+        error: null
+      };
+
     case LOGIN_SUCCESS:
       return {
         ...state,
-        lastError: null,
-        token: action.token,
-        isExpert: action.user.expert
+        error: null,
+        token: action.token
       };
 
+    case SIGNUP_FAILURE:
     case LOGIN_FAILURE:
       return {
         ...state,
-        lastError: action.error
+        error: action.error
       };
 
     case LOGOUT:
@@ -35,9 +45,8 @@ export default (state = initialState, action) => {
     case FETCH_PROFILE_SUCCESS:
       return {
         ...state,
-        lastError: null,
-        username: action.user.username,
-        isExpert: action.user.expert
+        ...action.user,
+        error: null
       };
 
     default:

@@ -1,31 +1,21 @@
 import {
-  FETCH_USERS_SUCCESS,
-  FETCH_USERS_FAILURE,
-
   FETCH_SINGLE_USER_SUCCESS,
   FETCH_SINGLE_USER_FAILURE
 } from '../constants/actions';
 
-import * as api from '../api/app';
+import axios from 'axios';
+import getHeaders from './utils/utils.js';
 
-export function fetchUsers() {
-  return async (dispatch, getState) => {
-    try {
-      const { auth: { token } } = getState();
-      const users = await api.fetchUsers(token);
-
-      dispatch({ type: FETCH_USERS_SUCCESS, users });
-    } catch (error) {
-      dispatch({ type: FETCH_USERS_FAILURE, error });
-    }
-  };
-}
+const baseUrl = 'http://localhost:1337';
 
 export function fetchSingleUser(username) {
   return async (dispatch, getState) => {
     try {
       const { auth: { token, id }, users } = getState(); //eslint-disable-line
-      const user = await api.fetchSingleUser(token, username);
+      const headers = getHeaders(token);
+      const user = (await axios.get(
+        `${baseUrl}/users/${username}`,
+        { headers })).data;
 
       dispatch({ type: FETCH_SINGLE_USER_SUCCESS, user });
     } catch (error) {
