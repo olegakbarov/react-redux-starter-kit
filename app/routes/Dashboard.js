@@ -80,7 +80,7 @@ export default class Dashboard extends React.Component {
                 </Link>
               <td className="table-button">
                 <a
-                  onClick={() => this.togglePublishPost(post.id, post.published)}
+                onClick={() => this.togglePublishPost(post.id, post.published)}
                 >
                   Publish
                 </a>

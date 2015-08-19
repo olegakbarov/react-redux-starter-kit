@@ -9,7 +9,7 @@ import {
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:1337';
-import getHeaders from './utils/utils.js';
+import getHeaders from '../utils/getHeaders.js';
 
 export function fetchPublishedPosts() {
   return async (dispatch) => {

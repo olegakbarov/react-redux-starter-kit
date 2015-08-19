@@ -18,7 +18,7 @@ import {
 import cookie from '../utils/cookie';
 import redirectBackAfter from '../utils/redirectBackAfter';
 import axios from 'axios';
-import getHeaders from './utils/utils.js';
+import getHeaders from '../utils/getHeaders.js';
 
 const baseUrl = 'http://localhost:1337';
 

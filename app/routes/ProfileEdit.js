@@ -12,7 +12,6 @@ export default class ProfileEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.users[nextProps.username].firstname);
     this.setState(this.getProfileState(nextProps));
   }
 
