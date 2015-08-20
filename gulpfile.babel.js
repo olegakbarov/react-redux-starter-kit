@@ -2,7 +2,6 @@
 import gulp from 'gulp';
 import loadPlugins from 'gulp-load-plugins';
 import del from 'del';
-import { sprite as icons } from 'evil-icons';
 import bootstrap from 'bootstrap-styl';
 import postcssImport from 'postcss-import';
 import autoprefixer from 'autoprefixer-core';
@@ -93,11 +92,7 @@ gulp.task('default', ['watch'], function(cb) {
 
             var template = _.template(source);
 
-            res.write(template({
-              icons,
-              html: '',
-              initialState: 'undefined'
-            }));
+            res.write(template({ html: '', initialState: 'undefined' }));
 
             res.end();
           });

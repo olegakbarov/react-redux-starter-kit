@@ -3,18 +3,13 @@
 
 import React from 'react';
 import { Router } from 'react-router';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import cookie from './utils/cookie';
 import routes from './routes';
-import * as reducers from './reducers';
 import { routerStateChange } from './actions/router';
+import { createRedux } from './utils/redux';
 
-const reducer = combineReducers(reducers);
-const finalCreateStore = applyMiddleware(thunk)(createStore);
-
-const store = finalCreateStore(reducer, (process.env.NODE_ENV === 'production')
+const store = createRedux((process.env.NODE_ENV === 'production')
   ? window.__INITIAL_STATE__
   : { auth: { token: cookie.get('token') || '' } });
 

@@ -55,7 +55,7 @@ export default class Login extends React.Component {
                 <label htmlFor="email">E-mail</label>
 
                 <input
-                  className="form-control input-email input-lg"
+                  className="form-control input-email"
                   value={email}
                   onChange={this.handleChange('email')}
                   id="email"
@@ -69,7 +69,7 @@ export default class Login extends React.Component {
                 <label htmlFor="password">Password</label>
 
                 <input
-                  className="form-control input-password input-lg"
+                  className="form-control input-password"
                   value={password}
                   onChange={this.handleChange('password')}
                   id="password"
@@ -80,7 +80,7 @@ export default class Login extends React.Component {
               </div>
 
               <button
-                className="btn btn-lg btn-block btn-success margin-top-20"
+                className="btn btn-block btn-default margin-top-20"
                 type="submit"
               >
                 Login

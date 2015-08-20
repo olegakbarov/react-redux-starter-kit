@@ -4,14 +4,12 @@ import cookieParser from 'cookie-parser';
 import _ from 'lodash';
 import path from 'path';
 import fs from 'fs';
-import { sprite as icons } from 'evil-icons';
 import React from 'react';
 import { Router } from 'react-router';
 import Location from 'react-router/lib/Location';
-import { createStore } from 'redux';
-import { Provider } from 'redux/react';
+import { Provider } from 'react-redux';
 import routes from './routes';
-import * as reducers from './reducers';
+import { createRedux } from './utils/redux';
 import fillStore from './utils/fillStore';
 import stringifyLocation from './utils/stringifyLocation';
 
@@ -27,7 +25,7 @@ const template = _.template(templateSource);
 app.use((req, res, next) => {
   const location = new Location(req.path, req.query);
   const token = req.cookies.token;
-  const store = createStore(reducers, { auth: { token } });
+  const store = createRedux({ auth: { token } });
 
   Router.run(routes(store, false), location, async (err, state, transition) => {
     if (err) { return next(err); }
@@ -52,7 +50,7 @@ app.use((req, res, next) => {
       res.status(404);
     }
 
-    res.send(template({ icons, html, initialState }));
+    res.send(template({ html, initialState }));
   });
 });
 

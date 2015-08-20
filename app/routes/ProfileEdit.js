@@ -37,7 +37,7 @@ export default class ProfileEdit extends React.Component {
     const { username, firstname, lastname } = this.state;
     return (
       <form
-        className="container-fluid content-wrapper"
+        className="container-fluid content-profile"
         onSubmit={this.handleSubmit}
       >
         <div className="row">
@@ -86,7 +86,7 @@ export default class ProfileEdit extends React.Component {
                 </div>
 
                 <button
-                  className="btn btn-primary btn-lg pull-right margin-top-20"
+                  className="btn btn-default btn-block margin-top-20"
                   type="submit"
                 >
                 Save

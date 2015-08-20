@@ -9,7 +9,7 @@ import redirectBackAfter from '../utils/redirectBackAfter';
 import fillStore from '../utils/fillStore';
 import Blog from './Blog';
 import Dashboard from './Dashboard';
-import PostEditor from './Post/Edit';
+import Edit from './Post/Edit';
 
 const routes = (
   <Route component={App}>
@@ -21,8 +21,8 @@ const routes = (
       <Route path="/profile" component={ProfileEdit} />
 
       <Route path="/dashboard" component={Dashboard} />
-      <Route path="/dashboard/add" component={PostEditor} />
-      <Route path="/dashboard/add/:id" component={PostEditor} />
+      <Route path="/dashboard/add" component={Edit} />
+      <Route path="/dashboard/add/:id" component={Edit} />
 
     </Route>
 

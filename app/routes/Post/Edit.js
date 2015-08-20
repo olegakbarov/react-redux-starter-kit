@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { savePost } from '../../actions/blog';
+import { savePost, fetchSinglePost } from '../../actions/blog';
 import PostEditor from '../../components/PostEditor';
 
 @connect(state => ({
   user: state.auth,
   posts: state.posts
 }), {
-  savePost
+  savePost,
+  fetchSinglePost
 })
 export default class Edit extends React.Component {
   static propTypes = {
@@ -16,6 +17,10 @@ export default class Edit extends React.Component {
     posts: PropTypes.object,
     publish: PropTypes.func.isRequired,
     savePost: PropTypes.func.isRequired
+  }
+  static fillStore(redux, nextState) {
+    console.log(nextState);
+    return redux.dispatch(fetchSinglePost(nextState.params.id));
   }
   handleSave = (post) => {
     this.props.savePost(post);
@@ -36,7 +41,7 @@ export default class Edit extends React.Component {
       };
     }
     return (
-      <div className="container-fluid content-wrapper">
+      <div className="editor-wrapper clearfix">
         <PostEditor
           post={post}
           onSave={this.handleSave}
