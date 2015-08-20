@@ -19,7 +19,6 @@ export default class Edit extends React.Component {
     savePost: PropTypes.func.isRequired
   }
   static fillStore(redux, nextState) {
-    console.log(nextState);
     return redux.dispatch(fetchSinglePost(nextState.params.id));
   }
   handleSave = (post) => {
