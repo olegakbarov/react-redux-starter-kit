@@ -10,12 +10,14 @@ import fillStore from '../utils/fillStore';
 import Blog from './Blog';
 import Dashboard from './Dashboard';
 import Edit from './Post/Edit';
+import ViewSinglePost from './Post/ViewSinglePost';
 
 const routes = (
   <Route component={App}>
     <Route path="/signup" component={Signup} />
     <Route path="/login" component={Login} />
     <Route path="/" component={Blog} />
+    <Route path="/posts/:id" component={ViewSinglePost} />
 
     <Route requireAuth>
       <Route path="/profile" component={ProfileEdit} />

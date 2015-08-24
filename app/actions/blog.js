@@ -19,6 +19,7 @@ export function fetchPublishedPosts() {
       const posts = (await axios.get(`${baseUrl}/posts`)).data;
       dispatch({ type: LOAD_PUBLISHED_POSTS_SUCCESS, posts });
     } catch (error) {
+      console.log(error);
       dispatch({
         type: LOAD_PUBLISHED_POSTS_FAILURE,
         error: Error('Unknown error occured :-(. Please, try again later.')

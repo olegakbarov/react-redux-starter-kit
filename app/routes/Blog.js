@@ -1,14 +1,13 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPublishedPosts } from '../actions/blog';
-import { Link } from 'react-router';
-import moment from 'moment';
+import PostsList from '../components/PostsList';
 
 @connect(state => ({
-  posts: state.posts,
-  auth: state.auth
+  auth: state.auth,
+  posts: state.posts.list.map(id => state.posts.items[id])
 }))
-export default class Blog extends React.Component {
+export default class Blog extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     posts: PropTypes.array
@@ -17,23 +16,11 @@ export default class Blog extends React.Component {
     return redux.dispatch(fetchPublishedPosts());
   }
   render() {
-    let posts = this.props.posts
-      .filter(item => item.published)
-      .map(post => {
-        const pb = moment(post.date).format('dddd, h:mm a');
-        return (
-            <Link to={`/posts/${post.id}`}>
-              <h2 className="post-header-link">{post.title}</h2>
-              <small>{pb}</small>
-            </Link>
-        );
-      });
     return (
       <div className="container-fluid content-wrapper">
         <div className="row">
-
           <div className="col-sm-9">
-            {posts}
+            <PostsList posts={this.props.posts} />
           </div>
 
           <div className="col-sm-3">
@@ -44,7 +31,6 @@ export default class Blog extends React.Component {
               <a href="https://twitter.com/olegakbarov">@olegakbarov</a>
             </div>
           </div>
-
         </div>
       </div>
     );

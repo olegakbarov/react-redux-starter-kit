@@ -34,6 +34,8 @@ export default keyMirror({
   LOAD_UNPUBLISHED_POSTS_SUCCESS: null,
   LOAD_UNPUBLISHED_POSTS_FAILURE: null,
 
+  FETCH_SINGLE_POST_SUCCESS: null,
+
   SAVE_POST: null,
   SAVE_POST_SUCCESS: null,
   SAVE_POST_FAILURE: null
