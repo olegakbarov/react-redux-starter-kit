@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import App from './App';
 import Signup from './Signup';
 import Login from './Login';
-import ProfileEdit from './ProfileEdit';
+import ProfileEditContainer from './Profile/Edit';
 import NotFound from './NotFound';
 import redirectBackAfter from '../utils/redirectBackAfter';
 import fillStore from '../utils/fillStore';
@@ -20,7 +20,7 @@ const routes = (
     <Route path="/posts/:id" component={ViewSinglePost} />
 
     <Route requireAuth>
-      <Route path="/profile" component={ProfileEdit} />
+      <Route path="/profile" component={ProfileEditContainer} />
 
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/dashboard/add" component={Edit} />

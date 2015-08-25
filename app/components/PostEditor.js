@@ -9,6 +9,13 @@ export default class PostEditor extends React.Component {
     onSave: PropTypes.func.isRequired,
     post: PropTypes.object
   }
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      post: {
+        ...newProps.post
+      }
+    });
+  }
   state = {
     post: { ...this.props.post }
   }
@@ -29,6 +36,8 @@ export default class PostEditor extends React.Component {
     });
   }
   render() {
+    console.log(this.props.post);
+    console.log(this.state.post);
     const { title, content } = this.state.post;
     const parsedContent = marked(content || '', {
       sanitize: true,

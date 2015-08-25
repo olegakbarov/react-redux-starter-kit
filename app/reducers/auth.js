@@ -14,7 +14,7 @@ import {
 const initialState = {
   error: null, // last occured error
   token: null,
-  username: null
+  profile: null
 };
 
 export default (state = initialState, action) => {
@@ -45,7 +45,7 @@ export default (state = initialState, action) => {
     case FETCH_PROFILE_SUCCESS:
       return {
         ...state,
-        ...action.user,
+        profile: { ...state.profile, ...action.user },
         error: null
       };
 

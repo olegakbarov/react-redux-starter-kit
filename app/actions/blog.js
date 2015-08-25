@@ -1,8 +1,6 @@
 import {
   LOAD_PUBLISHED_POSTS_SUCCESS,
   LOAD_PUBLISHED_POSTS_FAILURE,
-  LOAD_UNPUBLISHED_POSTS_SUCCESS,
-  LOAD_UNPUBLISHED_POSTS_FAILURE,
   LOAD_SINGLE_POST_SUCCESS,
   LOAD_SINGLE_POST_FAILURE,
   SAVE_POST_SUCCESS,
@@ -19,7 +17,6 @@ export function fetchPublishedPosts() {
       const posts = (await axios.get(`${baseUrl}/posts`)).data;
       dispatch({ type: LOAD_PUBLISHED_POSTS_SUCCESS, posts });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: LOAD_PUBLISHED_POSTS_FAILURE,
         error: Error('Unknown error occured :-(. Please, try again later.')
@@ -37,31 +34,10 @@ export function fetchSinglePost(id) {
       const post = (await axios.get(`${baseUrl}/posts/${id}`, {
         headers
       })).data;
-
       dispatch({ type: LOAD_SINGLE_POST_SUCCESS, post });
     } catch (error) {
       dispatch({
         type: LOAD_SINGLE_POST_FAILURE,
-        error: Error('Unknown error occured :-(. Please, try again later.')
-      });
-    }
-  };
-}
-
-export function fetchUnpublishedPosts() {
-  return async (dispatch, getState) => {
-    try {
-      const { auth: { token } } = getState();
-      let headers = getHeaders(token);
-
-      const posts = (await axios.get(
-        `${baseUrl}/posts/?drafts`,
-        { headers })).data;
-
-      dispatch({ type: LOAD_UNPUBLISHED_POSTS_SUCCESS, posts });
-    } catch (error) {
-      dispatch({
-        type: LOAD_UNPUBLISHED_POSTS_FAILURE,
         error: Error('Unknown error occured :-(. Please, try again later.')
       });
     }

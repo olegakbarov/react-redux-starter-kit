@@ -8,7 +8,7 @@ import {
 } from '../actions/blog';
 
 @connect(state => ({
-  posts: state.posts
+  posts: state.posts.list.map(id => state.posts.items[id])
 }), {
   fetchPublishedPosts,
   fetchUnpublishedPosts,
@@ -20,10 +20,7 @@ export default class Dashboard extends React.Component {
     savePost: PropTypes.func.isRequired
   }
   static fillStore(redux) {
-    return Promise.all([
-      redux.dispatch(fetchPublishedPosts()),
-      redux.dispatch(fetchUnpublishedPosts())
-    ]);
+    return redux.dispatch(fetchPublishedPosts());
   }
   togglePublishPost = (id, status) => {
     const post = this.props.posts.find(post => post.id === id);
@@ -93,6 +90,13 @@ export default class Dashboard extends React.Component {
     return (
       <div className="container-fluid content-wrapper">
         <h3>Published posts</h3>
+        <Link to={'/dashboard/add'}>
+          <button
+            className="btn btn-success margin-top-20 margin-bottom-20">
+            Add Post
+          </button>
+        </Link>
+        <hr />
         <table className="table">
           <tbody>
             {publishedPosts}
@@ -104,9 +108,6 @@ export default class Dashboard extends React.Component {
             {unpublishedPosts}
           </tbody>
         </table>
-        <Link to={'/dashboard/add'}>
-          <button className="btn btn-success">Add Post</button>
-        </Link>
       </div>
     );
   }

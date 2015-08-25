@@ -5,8 +5,8 @@ import NavItem from './NavItem';
 export default class Header extends React.Component {
   static propTypes = {
     logout: PropTypes.func.isRequired,
-    router: PropTypes.object.isRequired,
-    user: PropTypes.object
+    profile: PropTypes.object,
+    router: PropTypes.object.isRequired
   }
 
   handleLogout = e => {
@@ -18,7 +18,7 @@ export default class Header extends React.Component {
   }
 
   renderNavBar() {
-    const user = this.props.user;
+    const user = this.props.profile;
 
     if (user) {
       return (

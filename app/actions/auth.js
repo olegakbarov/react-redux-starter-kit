@@ -98,13 +98,12 @@ export function logout(router) {
 export function fetchProfile() {
   return async (dispatch, getState) => {
     try {
-      const { auth: { token, userId }, users } = getState();
+      const { auth: { token } } = getState();
 
-      if (!token || users[userId]) { return; }
+      if (!token) { return; }
 
       const headers = getHeaders(token);
       const user = (await axios.get(`${baseUrl}/profile`, { headers })).data;
-
       dispatch({ type: FETCH_PROFILE_SUCCESS, user });
     } catch (error) {
       dispatch({ type: FETCH_PROFILE_FAILURE, error });

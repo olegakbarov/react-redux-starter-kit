@@ -6,16 +6,14 @@ import { fetchProfile, logout } from '../actions/auth';
 
 @connect(state => ({
   router: state.router,
-  username: state.auth.username,
-  users: state.users
+  profile: state.auth
 }))
 export default class App extends React.Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
     dispatch: PropTypes.func.isRequired,
     error: PropTypes.string,
-    username: PropTypes.string,
-    users: PropTypes.object.isRequired
+    profile: PropTypes.object.isRequired
   }
 
   static contextTypes = {
@@ -29,14 +27,13 @@ export default class App extends React.Component {
   render() {
     const {
       dispatch,
-      username,
-      users
+      profile
     } = this.props;
 
     return (
       <div>
         <Header
-          user={users[username]}
+          profile={profile}
           router={this.context.router}
           {...bindActionCreators({ logout }, dispatch)}
         />

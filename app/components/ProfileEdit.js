@@ -1,40 +1,21 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { saveProfile } from '../actions/auth';
 
-@connect(state => ({
-  username: state.auth.username,
-  users: state.users
-}))
 export default class ProfileEdit extends React.Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired
+    profile: PropTypes.obj,
+    saveProfile: PropTypes.func.isRequired
   }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState(this.getProfileState(nextProps));
-  }
-
-  state = this.getProfileState(this.props)
-
-  getProfileState({ users, username }) {
-    if (!users || !username || !users[username]) { return {}; }
-
-    return { ...users[username] };
-  }
-
   handleSubmit = e => {
     e.preventDefault();
-    this.props.dispatch(saveProfile(this.state));
+    this.props.saveProfile(this.state);
   }
-
   handleChange = field => e => {
     e.preventDefault();
     this.setState({ [field] : e.target.value });
   }
-
   render() {
-    const { username, firstname, lastname } = this.state;
+    const { firstname, lastname } = this.props.profile;
+
     return (
       <form
         className="container-fluid content-profile"
@@ -45,19 +26,6 @@ export default class ProfileEdit extends React.Component {
             <div className="panel panel-default">
               <div className="panel-body">
                 <h4>Basic info</h4>
-
-                <div className="form-group">
-                  <label htmlFor="username">Username</label>
-
-                  <input
-                    className="form-control"
-                    value={username}
-                    onChange={this.handleChange('username')}
-                    id="username"
-                    type="text"
-                    placeholder="username"
-                  />
-                </div>
 
                 <div className="form-group">
                   <label htmlFor="firstname">First name</label>
@@ -89,7 +57,7 @@ export default class ProfileEdit extends React.Component {
                   className="btn btn-default btn-block margin-top-20"
                   type="submit"
                 >
-                Save
+                 Save
                 </button>
 
               </div>

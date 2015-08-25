@@ -14,10 +14,12 @@ export default class PostsList extends React.Component {
           .map(post => {
             const pb = moment(new Date(post.date)).format('dddd, h:mm a');
             return (
-                <Link key={post.id} to={`/posts/${post.id}`}>
-                  <h2 className="post-header-link">{post.title}</h2>
+                <div>
+                  <Link key={post.id} to={`/posts/${post.id}`}>
+                    <h2 className="post-header-link">{post.title}</h2>
+                  </Link>
                   <small>{pb}</small>
-                </Link>
+                </div>
             );
           })}
       </div>

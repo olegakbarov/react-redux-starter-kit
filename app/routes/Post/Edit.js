@@ -5,7 +5,7 @@ import PostEditor from '../../components/PostEditor';
 
 @connect(state => ({
   user: state.auth,
-  posts: state.posts
+  posts: state.posts.items
 }), {
   savePost,
   fetchSinglePost
@@ -31,12 +31,11 @@ export default class Edit extends React.Component {
     let post;
     const { params: { id } } = this.props;
     if (id) {
-      post = this.props.posts.find(post => post.id === id);
+      post = this.props.posts[id];
     } else {
       post = {
         title: '',
-        content: '',
-        tags: ''
+        content: ''
       };
     }
     return (
