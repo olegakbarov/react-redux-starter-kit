@@ -36,8 +36,6 @@ export default class PostEditor extends React.Component {
     });
   }
   render() {
-    console.log(this.props.post);
-    console.log(this.state.post);
     const { title, content } = this.state.post;
     const parsedContent = marked(content || '', {
       sanitize: true,

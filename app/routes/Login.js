@@ -50,6 +50,12 @@ export default class Login extends React.Component {
               ? <div className="alert alert-danger">{error.message}</div>
               : null}
 
+            <div className="panel-body">
+              <span>email:</span><code> shaffernunez@nimon.com</code>
+              <br />
+              <span>password:</span><code> ad</code>
+            </div>
+
             <form onSubmit={this.handleLogin}>
               <div className="form-group">
                 <label htmlFor="email">E-mail</label>

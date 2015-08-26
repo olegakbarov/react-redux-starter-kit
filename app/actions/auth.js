@@ -113,9 +113,9 @@ export function fetchProfile() {
 
 export function saveProfile(user) {
   return async (dispatch, getState) => {
-    const { auth: { token, username } } = getState();
+    const { auth: { token } } = getState();
 
-    dispatch({ type: SAVE_PROFILE, username, user });
+    dispatch({ type: SAVE_PROFILE, user });
 
     try {
       const headers = getHeaders(token);
@@ -126,7 +126,7 @@ export function saveProfile(user) {
         { headers })
       ).data;
 
-      dispatch({ type: SAVE_PROFILE_SUCCESS, username, user });
+      dispatch({ type: SAVE_PROFILE_SUCCESS, user });
     } catch (error) {
       dispatch({
         type: SAVE_PROFILE_FAILURE,

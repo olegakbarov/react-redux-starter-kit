@@ -6,9 +6,11 @@ import jsonServer from 'json-server';
 import config from './config';
 import jwtToken from 'jsonwebtoken';
 import cors from 'cors';
+import path from 'path';
 import fs from 'fs';
 import _ from 'lodash';
 
+const jsonPath = path.join(__dirname, 'data.json');
 const app = express();
 
 app.use(bodyParser.json());
@@ -64,7 +66,9 @@ app.get('/profile', (req, res) => {
     const token = extractToken(req.headers.authorization);
     const decode = jwtToken.decode(token);
     const { email } = decode;
-    const db = fs.readFile('data.json', { encoding: 'utf-8' }, (error, db) => {
+    fs.readFile(jsonPath, {
+      encoding: 'utf-8'
+    }, (error, db) => {
       const users  = (JSON.parse(db)).users;
       const user = _.find(users, (user) => user.email === email);
       res.send(user);
@@ -74,9 +78,45 @@ app.get('/profile', (req, res) => {
   }
 });
 
+app.put('/profile', (req, res) => {
+  try {
+    const token = extractToken(req.headers.authorization);
+    const decode = jwtToken.decode(token);
+    const { email } = decode;
+
+    fs.readFile(jsonPath, {
+      encoding: 'utf-8'
+    }, (error, db) => {
+      let editedUser;
+
+      const json = JSON.parse(db);
+
+      const users  = json.users.map(user => {
+        if (user.email === email) {
+          return (editedUser = { ...user, ...req.body });
+        }
+
+        return user;
+      });
+
+      if (!editedUser) res.sendStatus(404);
+
+      json.users = users;
+
+      fs.writeFile(jsonPath, JSON.stringify(json, null, '  '), err => {
+        if (err) return res.sendStatus(500);
+
+        res.send(editedUser);
+      });
+    });
+  } catch (error) {
+    res.sendStatus(401);
+  }
+});
+
 const api = jsonServer.create();
 
 api.use(jsonServer.defaults);
-api.use(jsonServer.router('data.json'));
+api.use(jsonServer.router(jsonPath));
 app.use(api);
 app.listen(1337);

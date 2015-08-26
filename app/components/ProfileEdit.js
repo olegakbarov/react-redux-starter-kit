@@ -2,19 +2,32 @@ import React, { PropTypes } from 'react';
 
 export default class ProfileEdit extends React.Component {
   static propTypes = {
-    profile: PropTypes.obj,
+    profile: PropTypes.object,
     saveProfile: PropTypes.func.isRequired
   }
+
+  state = {
+    profile: { ...this.props.profile }
+  }
+
   handleSubmit = e => {
     e.preventDefault();
-    this.props.saveProfile(this.state);
+    this.props.saveProfile(this.state.profile);
   }
+
   handleChange = field => e => {
     e.preventDefault();
-    this.setState({ [field] : e.target.value });
+
+    this.setState({
+      profile: {
+        ...this.state.profile,
+        [field] : e.target.value
+      }
+    });
   }
+
   render() {
-    const { firstname, lastname } = this.props.profile;
+    const { firstname, lastname } = this.state.profile;
 
     return (
       <form

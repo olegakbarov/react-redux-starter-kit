@@ -8,6 +8,8 @@ import {
 
   LOGOUT,
 
+  SAVE_PROFILE,
+  SAVE_PROFILE_SUCCESS,
   FETCH_PROFILE_SUCCESS
 } from '../constants/actions';
 
@@ -42,6 +44,8 @@ export default (state = initialState, action) => {
     case LOGOUT:
       return { ...initialState };
 
+    case SAVE_PROFILE:
+    case SAVE_PROFILE_SUCCESS:
     case FETCH_PROFILE_SUCCESS:
       return {
         ...state,
