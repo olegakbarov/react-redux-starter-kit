@@ -5,7 +5,6 @@ import jwt from 'express-jwt';
 import jsonServer from 'json-server';
 import config from './config';
 import jwtToken from 'jsonwebtoken';
-import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
 import _ from 'lodash';
@@ -13,8 +12,8 @@ import _ from 'lodash';
 const jsonPath = path.join(__dirname, 'data.json');
 const app = express();
 
+app.use(jsonServer.defaults);
 app.use(bodyParser.json());
-app.use(cors());
 app.use(jwt({
   secret: config.token.secret
 }).unless(req => {
@@ -114,9 +113,6 @@ app.put('/profile', (req, res) => {
   }
 });
 
-const api = jsonServer.create();
+app.use(jsonServer.router(jsonPath));
 
-api.use(jsonServer.defaults);
-api.use(jsonServer.router(jsonPath));
-app.use(api);
 app.listen(1337);
