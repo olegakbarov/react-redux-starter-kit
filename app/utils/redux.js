@@ -2,6 +2,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
+import { ROUTER_STATE_CHANGE } from '../constants/actions';
 import * as reducers from '../reducers';
 
 export function createRedux(initialState) {
@@ -10,7 +11,8 @@ export function createRedux(initialState) {
 
   if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger({
-      collapsed: true
+      collapsed: true,
+      predicate: (getState, action) => !(action.type === ROUTER_STATE_CHANGE)
     }));
   }
 
