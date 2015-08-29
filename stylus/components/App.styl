@@ -9,20 +9,14 @@ body
   min-width 400px
 
 h1, h2, h3, h4, h5
-  color #000000
+  color #000
 
 h2
   line-height 50px
-p
-  line-height: 22px;
-  font-size: 16px;
 
-// Common
-.spinner-basic
-  display block
-  margin 0 auto
-  svg
-    fill $navy
+p
+  line-height 22px
+  font-size 16px
 
 // temporary helper classes
 .margin-top-20
@@ -30,15 +24,6 @@ p
 
 .margin-left-15
   margin-left 10px
-
-.inline-20-margin
-  margin-left 20px
-
-.inline-first
-  margin-left 0px
-
-.centered
-  text-align center
 
 .form-panel
   max-width 550px
@@ -74,70 +59,54 @@ label
   line-height 50px
   font-size 23px
 
-a
+:link,
+:visited
   &:hover,
   &:focus
     text-decoration none
 
-.navbar-nav > li > a
-  line-height 100px
-  padding 0 15px
+.navbar-nav > li
+  & > :link,
+  & > :visited
+    line-height 100px
+    padding 0 15px
 
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus
-  background-color #fff
-  color #000
+.navbar-default .navbar-nav > .active
+  & > :link,
+  & > :visited
+    &,
+    &:hover,
+    &:focus
+      background-color #fff
+      color #000
 
 .btn
   min-width 130px
-  &.btn-xs
-    min-width 50px
-    margin-left 2px
-    font 9px/15px "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-    text-transform uppercase
 
-.user-info-row
-  margin-left 120px
+.container-navigation,
+.content-wrapper,
+.editor-wrapper,
+.content-profile
+  margin auto
 
 .container-navigation,
 .content-wrapper
   padding 0 20px
   max-width 960px
-  margin 0 auto
 
 .editor-wrapper
   padding 0 20px
   max-width 1440px
-  margin 0 auto
 
 .post-wrapper
   max-width 600px
 
 .content-profile
   max-width 480px
-  margin 0 auto
-
-.content-users
-  max-width 600px
-  margin 0 auto
-
-.user-row
-  position relative
-  padding 20px 30px
-  position relative
-  max-width 100%
-  display block
-
-.userpick
-  float left
-  background-color #EAEAEA
-  border-radius 50px!important
-  display block
-  fill #fff
 
 // table
 .table-button
   width 80px
+
   &:hover
     cursor pointer
