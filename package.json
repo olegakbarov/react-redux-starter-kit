@@ -11,7 +11,7 @@
     "url": "https://twitter.com/faergeek"
   }],
   "scripts": {
-    "start": "babel-node ./api & babel-node .",
+    "start": "NODE_ENV=production babel-node ./api & NODE_ENV=production babel-node .",
     "dev": "nodemon -x babel-node -w api ./api & gulp",
     "test": "eslint api app"
   },
