@@ -1,6 +1,15 @@
 {
   "main": "app/server",
-  "author": "Sergey Slipchenko <faergeek@gmail.com>, Oleg Akbarov <olegakbarov@gmail.com>",
+  "author": {
+    "name": "Oleg Akbarov",
+    "email": "olegakbarov@gmail.com",
+    "url": "https://twitter.com/olegakbarov"
+  },
+  "contributors": [{
+    "name": "Sergey Slipchenko",
+    "email": "faergeek@gmail.com",
+    "url": "https://twitter.com/faergeek"
+  }],
   "scripts": {
     "start": "babel-node ./api & babel-node .",
     "dev": "nodemon -x babel-node -w api ./api & gulp",
