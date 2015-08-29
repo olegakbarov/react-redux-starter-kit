@@ -4,8 +4,8 @@ import NavItem from './NavItem';
 
 export default class Header extends React.Component {
   static propTypes = {
+    loggedIn: PropTypes.bool,
     logout: PropTypes.func.isRequired,
-    profile: PropTypes.object,
     router: PropTypes.object.isRequired
   }
 
@@ -18,9 +18,9 @@ export default class Header extends React.Component {
   }
 
   renderNavBar() {
-    const user = this.props.profile;
+    const { loggedIn } = this.props;
 
-    if (user) {
+    if (loggedIn) {
       return (
         <ul className="nav navbar-nav navbar-right">
           <NavItem to="/">Blog</NavItem>

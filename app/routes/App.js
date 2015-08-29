@@ -5,15 +5,15 @@ import Header from '../components/Header';
 import { fetchProfile, logout } from '../actions/auth';
 
 @connect(state => ({
-  router: state.router,
-  profile: state.auth
+  auth: state.auth,
+  router: state.router
 }))
 export default class App extends React.Component {
   static propTypes = {
+    auth: PropTypes.object.isRequired,
     children: PropTypes.element.isRequired,
     dispatch: PropTypes.func.isRequired,
-    error: PropTypes.string,
-    profile: PropTypes.object.isRequired
+    error: PropTypes.string
   }
 
   static contextTypes = {
@@ -26,14 +26,14 @@ export default class App extends React.Component {
 
   render() {
     const {
-      dispatch,
-      profile
+      auth,
+      dispatch
     } = this.props;
 
     return (
       <div>
         <Header
-          profile={profile}
+          loggedIn={!!auth.token}
           router={this.context.router}
           {...bindActionCreators({ logout }, dispatch)}
         />
