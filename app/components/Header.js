@@ -32,6 +32,7 @@ export default class Header extends React.Component {
     } else {
       return (
         <ul className="nav navbar-nav navbar-right">
+          <NavItem to="/">Blog</NavItem>
           <NavItem to="/signup">Sign up</NavItem>
           <NavItem to="/login">Login</NavItem>
         </ul>
