@@ -12,14 +12,16 @@ export default class PostsList extends React.Component {
         {this.props.posts
           .filter(item => item.published)
           .map(post => {
-            const pb = moment(new Date(post.date)).format('dddd, h:mm a');
+            const publishedAt = moment(new Date(post.date));
+
             return (
-                <div>
-                  <Link key={post.id} to={`/posts/${post.id}`}>
-                    <h2 className="post-header-link">{post.title}</h2>
-                  </Link>
-                  <small>{pb}</small>
-                </div>
+              <div key={post.id}>
+                <Link to={`/posts/${post.id}`}>
+                  <h2 className="post-header-link">{post.title}</h2>
+                </Link>
+
+                <small>{publishedAt.format('dddd, h:mm a')}</small>
+              </div>
             );
           })}
       </div>
