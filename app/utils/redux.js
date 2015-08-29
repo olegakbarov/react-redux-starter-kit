@@ -1,7 +1,7 @@
 /* global process */
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
+import createLogger from 'redux-logger';
 import * as reducers from '../reducers';
 
 export function createRedux(initialState) {
@@ -9,7 +9,9 @@ export function createRedux(initialState) {
   const middleware = [thunk];
 
   if (process.env.NODE_ENV !== 'production') {
-    middleware.push(logger);
+    middleware.push(createLogger({
+      collapsed: true
+    }));
   }
 
   const finalCreateStore = applyMiddleware(...middleware)(createStore);
