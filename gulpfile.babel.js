@@ -15,55 +15,52 @@ import _ from 'lodash';
 import path from 'path';
 import fs from 'fs';
 
-var plugins = loadPlugins();
+const plugins = loadPlugins();
+const processors = [
+  postcssImport,
 
-gulp.task('clean', function(cb) {
+  autoprefixer({
+    browsers: [
+      'last 2 versions',
+      '> 1%',
+      'Opera >= 12',
+      'Android >= 2.3',
+      'IE >= 9'
+    ]
+  }),
+
+  csswring
+];
+
+gulp.task('clean', cb =>
   del([
     'public/css',
     'public/js'
-  ], cb);
-});
+  ], cb)
+);
 
-gulp.task('css', function() {
-  var processors = [
-    postcssImport,
-
-    autoprefixer({
-      browsers: [
-        'last 2 versions',
-        '> 1%',
-        'Opera >= 12',
-        'Android >= 2.3',
-        'IE >= 9'
-      ]
-    }),
-
-    csswring
-  ];
-
-  return gulp.src('stylus/*.styl', { base: 'public/css' })
+gulp.task('css', () =>
+  gulp.src('stylus/*.styl', { base: 'public/css' })
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init({ loadMaps: true }))
     .pipe(plugins.stylus({ use: bootstrap() }))
     .pipe(plugins.postcss(processors))
     .pipe(plugins.concat('app.css'))
     .pipe(plugins.sourcemaps.write('.', { includeContent: false }))
-    .pipe(gulp.dest('public/css'));
-});
+    .pipe(gulp.dest('public/css'))
+);
 
-gulp.task('js', function(cb) {
-  webpack(webpackConfig, cb);
-});
+gulp.task('js', cb => webpack(webpackConfig, cb));
 
 gulp.task('build', ['css', 'js']);
 
-gulp.task('watch', ['css'], function() {
+gulp.task('watch', ['css'], () => {
   gulp.watch('stylus/**/*.styl', ['css']);
 });
 
-gulp.task('default', ['watch'], function(cb) {
-  var bs = browserSync.create();
-  var bundler = webpack(webpackConfig);
+gulp.task('default', ['watch'], cb => {
+  const bs = browserSync.create();
+  const bundler = webpack(webpackConfig);
 
   bs.init({
     open: false,
@@ -87,12 +84,11 @@ gulp.task('default', ['watch'], function(cb) {
           fs.readFile(path.join(__dirname, 'app', 'template.html'), {
             encoding: 'utf-8'
           }, function(err, source) {
-            if (err) { return next(err); }
+            if (err) return next(err);
 
-            var template = _.template(source);
+            const template = _.template(source);
 
             res.write(template({ html: '', initialState: 'undefined' }));
-
             res.end();
           });
         }
