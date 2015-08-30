@@ -12,10 +12,8 @@ import PostEditor from '../../components/PostEditor';
 })
 export default class Edit extends React.Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
     params: PropTypes.object,
     posts: PropTypes.object,
-    publish: PropTypes.func.isRequired,
     savePost: PropTypes.func.isRequired
   }
   static fillStore(redux, nextState) {

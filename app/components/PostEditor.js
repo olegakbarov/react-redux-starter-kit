@@ -4,7 +4,6 @@ import marked from 'marked';
 
 export default class PostEditor extends React.Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
     onPublish: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
     post: PropTypes.object
