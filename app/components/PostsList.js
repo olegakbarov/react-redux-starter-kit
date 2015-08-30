@@ -6,6 +6,7 @@ export default class PostsList extends React.Component {
   static propTypes = {
     posts: PropTypes.array
   }
+
   render() {
     return (
       <div>

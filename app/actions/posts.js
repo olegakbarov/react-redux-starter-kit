@@ -1,31 +1,34 @@
 import {
-  LOAD_PUBLISHED_POSTS_SUCCESS,
-  LOAD_PUBLISHED_POSTS_FAILURE,
-  LOAD_SINGLE_POST_SUCCESS,
-  LOAD_SINGLE_POST_FAILURE,
+  FETCH_POSTS_SUCCESS,
+  FETCH_POSTS_FAILURE,
+
+  FETCH_POST_SUCCESS,
+  FETCH_POST_FAILURE,
+
   SAVE_POST_SUCCESS,
   SAVE_POST_FAILURE
 } from '../constants/actions';
+
 import axios from 'axios';
+import getHeaders from '../utils/getHeaders';
 
 const baseUrl = 'http://localhost:1337';
-import getHeaders from '../utils/getHeaders.js';
 
-export function fetchPublishedPosts() {
+export function fetchPosts() {
   return async (dispatch) => {
     try {
       const posts = (await axios.get(`${baseUrl}/posts`)).data;
-      dispatch({ type: LOAD_PUBLISHED_POSTS_SUCCESS, posts });
+      dispatch({ type: FETCH_POSTS_SUCCESS, posts });
     } catch (error) {
       dispatch({
-        type: LOAD_PUBLISHED_POSTS_FAILURE,
+        type: FETCH_POSTS_FAILURE,
         error: Error('Unknown error occured :-(. Please, try again later.')
       });
     }
   };
 }
 
-export function fetchSinglePost(id) {
+export function fetchPost(id) {
   return async (dispatch, getState) => {
     try {
       const { auth: { token } } = getState();
@@ -34,10 +37,10 @@ export function fetchSinglePost(id) {
       const post = (await axios.get(`${baseUrl}/posts/${id}`, {
         headers
       })).data;
-      dispatch({ type: LOAD_SINGLE_POST_SUCCESS, post });
+      dispatch({ type: FETCH_POST_SUCCESS, post });
     } catch (error) {
       dispatch({
-        type: LOAD_SINGLE_POST_FAILURE,
+        type: FETCH_POST_FAILURE,
         error: Error('Unknown error occured :-(. Please, try again later.')
       });
     }

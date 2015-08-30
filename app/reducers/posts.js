@@ -1,7 +1,6 @@
 import {
-  LOAD_PUBLISHED_POSTS_SUCCESS,
-  LOAD_UNPUBLISHED_POSTS_SUCCESS,
-  LOAD_SINGLE_POST_SUCCESS,
+  FETCH_POSTS_SUCCESS,
+  FETCH_POST_SUCCESS,
   SAVE_POST_SUCCESS
 } from '../constants/actions';
 
@@ -24,12 +23,11 @@ function storeItem({ list, items }, item) {
 
 export default (state = getInitialListState(), action) => {
   switch (action.type) {
-    case LOAD_UNPUBLISHED_POSTS_SUCCESS:
-    case LOAD_PUBLISHED_POSTS_SUCCESS:
+    case FETCH_POSTS_SUCCESS:
       return storeList(action.posts);
 
     case SAVE_POST_SUCCESS:
-    case LOAD_SINGLE_POST_SUCCESS:
+    case FETCH_POST_SUCCESS:
       return storeItem(state, action.post);
 
     default:

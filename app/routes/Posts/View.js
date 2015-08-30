@@ -1,26 +1,29 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchSinglePost } from '../../actions/blog';
+import { fetchPost } from '../../actions/posts';
 import SinglePost from '../../components/SinglePost';
 
 @connect(state => ({
   posts: state.posts.items
 }))
-export default class ViewSinglePost extends Component {
+export default class PostsView extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     params: PropTypes.object,
     posts: PropTypes.object
   }
-  static fillStore(redux, nextProps) {
-    let id = nextProps.params.id;
-    return redux.dispatch(fetchSinglePost(id));
+
+  static fillStore(redux, props) {
+    return redux.dispatch(fetchPost(props.params.id));
   }
+
   render() {
     const post = this.props.posts[this.props.params.id];
 
     return (
-      <SinglePost post={post} />
+      <div className="container-fluid post-wrapper">
+        <SinglePost post={post} />
+      </div>
     );
   }
 }
