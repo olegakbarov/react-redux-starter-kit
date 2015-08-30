@@ -8,7 +8,6 @@ import autoprefixer from 'autoprefixer-core';
 import csswring from 'csswring';
 import webpack from 'webpack';
 import webpackConfig from './webpack.config';
-import webpackDevConfig from './webpack.dev';
 import browserSync from 'browser-sync';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -64,7 +63,7 @@ gulp.task('watch', ['css'], function() {
 
 gulp.task('default', ['watch'], function(cb) {
   var bs = browserSync.create();
-  var bundler = webpack(webpackDevConfig);
+  var bundler = webpack(webpackConfig);
 
   bs.init({
     open: false,
@@ -76,7 +75,7 @@ gulp.task('default', ['watch'], function(cb) {
 
       middleware: [
         webpackDevMiddleware(bundler, {
-          publicPath: webpackDevConfig.output.publicPath,
+          publicPath: webpackConfig.output.publicPath,
           stats: { colors: true }
         }),
 
