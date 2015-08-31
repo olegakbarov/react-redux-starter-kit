@@ -1,34 +1,50 @@
 /* eslint-env node */
-var webpack = require('webpack');
-var path = require('path');
+import webpack from 'webpack';
+import path from 'path';
+import autoprefixer from 'autoprefixer';
+import csswring from 'csswring';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-var env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'development';
 
-var cfg = {
+const cfg = {
   context: path.join(__dirname, 'app'),
   entry: ['./client'],
 
   output: {
-    path: path.join(__dirname, 'public', 'js'),
-    publicPath: '/js/',
-    filename: 'app.js'
+    path: path.join(__dirname, 'public'),
+    publicPath: '/',
+    filename: 'js/app.js'
   },
 
   plugins: [
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(env) }
     }),
-
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin()
+    new webpack.optimize.DedupePlugin(),
+    new ExtractTextPlugin('css/[name].css')
   ],
 
   module: {
-    loaders: []
+    loaders: [
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.styl$/,
+        loader: ExtractTextPlugin.extract('style-loader',
+        'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!stylus-loader') //eslint-disable-line
+      }]
+  },
+
+  postcss: () => {
+    return [autoprefixer, csswring];
   }
 };
 
-var jsLoader = {
+const jsLoader = {
   test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel']
 };
 
@@ -49,7 +65,7 @@ if (env === 'production') {
 
   cfg.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
   );
 
   jsLoader.loaders.unshift('react-hot');
