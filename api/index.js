@@ -39,12 +39,12 @@ function extractToken(header) {
 }
 
 // here comes the real hardcode
-const HARDCODED_EMAIL = 'shaffernunez@nimon.com';
-const HARDCODED_PASSWORD = 'ad';
+const HARDCODED_EMAIL = 'email@adress';
+const HARDCODED_PASSWORD = 'pass';
 const HARDCODED_USER = {
   id: 4,
-  email: 'shaffernunez@nimon.com',
-  password: 'ad'
+  email: 'email@adress',
+  password: 'pass'
 };
 
 app.post('/login', (req, res) => {

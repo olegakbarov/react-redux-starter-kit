@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { saveProfile } from '../actions/auth';
-import ProfileEdit from '../components/ProfileEdit';
+import ProfileEdit from '../components/ProfileEdit/ProfileEdit';
 
 @connect(state => ({
   auth: state.auth
 }), {
   saveProfile
 })
-export default class Profile extends React.Component {
+export default class ProfileRoute extends React.Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     saveProfile: PropTypes.func.isRequired

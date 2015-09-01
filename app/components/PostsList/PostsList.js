@@ -1,7 +1,11 @@
+import styles from './styles.styl';
+
 import React, { PropTypes } from 'react';
 import moment from 'moment';
 import { Link } from 'react-router';
+import CSSModules from 'react-css-modules';
 
+@CSSModules(styles)
 export default class PostsList extends React.Component {
   static propTypes = {
     posts: PropTypes.array
@@ -9,7 +13,7 @@ export default class PostsList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div styleName="wrapper">
         {this.props.posts
           .filter(item => item.published)
           .map(post => {

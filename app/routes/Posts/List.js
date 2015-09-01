@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions/posts';
-import Posts from '../../components/PostsList';
+import Posts from '../../components/PostsList/PostsList';
 
 @connect(state => ({
   auth: state.auth,
@@ -19,21 +19,7 @@ export default class PostsList extends Component {
 
   render() {
     return (
-      <div className="container-fluid content-wrapper">
-        <div className="row">
-          <div className="col-sm-9">
-            <Posts posts={this.props.posts} />
-          </div>
-
-          <div className="col-sm-3">
-            <div className="panel-body">
-              <h4>Brought to you by:</h4>
-              <a href="https://twitter.com/faergeek">@faergeek</a><br />
-              <a href="https://twitter.com/olegakbarov">@olegakbarov</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Posts posts={this.props.posts} />
     );
   }
 }

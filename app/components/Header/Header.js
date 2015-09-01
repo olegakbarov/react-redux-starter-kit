@@ -1,7 +1,11 @@
+import styles from './styles.styl';
+
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import NavItem from './NavItem';
+import CSSModules from 'react-css-modules';
 
+@CSSModules(styles)
 export default class Header extends React.Component {
   static propTypes = {
     loggedIn: PropTypes.bool,
@@ -22,7 +26,7 @@ export default class Header extends React.Component {
 
     if (loggedIn) {
       return (
-        <ul className="nav navbar-nav navbar-right">
+        <ul styleName="nav">
           <NavItem to="/">Blog</NavItem>
           <NavItem to="/dashboard">Dashboard</NavItem>
           <NavItem to="/profile">Profile</NavItem>
@@ -31,7 +35,7 @@ export default class Header extends React.Component {
       );
     } else {
       return (
-        <ul className="nav navbar-nav navbar-right">
+        <ul styleName="nav">
           <NavItem to="/">Blog</NavItem>
           <NavItem to="/signup">Sign up</NavItem>
           <NavItem to="/login">Login</NavItem>
@@ -42,32 +46,18 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-default">
-        <div className="container-fluid container-navigation">
-          <div className="navbar-header">
-            <button
-              className="navbar-toggle collapsed"
-              type="button"
-              data-toggle="collapse"
-              data-target="#main-nav"
-            >
-              <span className="sr-only">Toggle navigation</span>
-            </button>
+      <nav styleName="navbar">
+          <Link
+            to="/"
+            activeClassName=""
+            title="Reblog"
+          >
+          <span styleName="brand">
+            Reblog
+          </span>
+          </Link>
 
-            <Link
-              to="/"
-              activeClassName=""
-              className="navbar-brand"
-              title="BLOG"
-            >
-              Reblog
-            </Link>
-          </div>
-
-          <div className="collapse navbar-collapse" id="main-nav">
-            {this.renderNavBar()}
-          </div>
-        </div>
+          {this.renderNavBar()}
       </nav>
     );
   }

@@ -22,8 +22,7 @@ const cfg = {
       'process.env': { NODE_ENV: JSON.stringify(env) }
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new ExtractTextPlugin('css/[name].css')
+    new webpack.optimize.DedupePlugin()
   ],
 
   module: {
@@ -34,9 +33,9 @@ const cfg = {
       },
       {
         test: /\.styl$/,
-        loader: ExtractTextPlugin.extract('style-loader',
-        'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!stylus-loader') //eslint-disable-line
-      }]
+        loader: 'style-loader!css-loader?modules!stylus-loader'
+      }
+    ]
   },
 
   postcss: () => {
@@ -48,12 +47,24 @@ const jsLoader = {
   test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel']
 };
 
+const hotCssLoader = {
+  test: /\.styl$/,
+  loader: ExtractTextPlugin(
+    'css-loader?modules&importLoaders=1&' +
+    'localIdentName=[name]__[local]___[hash:base64:5]' +
+    '!postcss-loader!stylus-loader'
+  )
+};
+
 if (env === 'production') {
   cfg.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       output: { comments: false }
-    })
+    }),
+    new ExtractTextPlugin('css/[name].css')
   );
+
+  cfg.plugins.loaders.push(hotCssLoader);
 } else {
   cfg.debug = true;
   cfg.devtool = '#eval-source-map';

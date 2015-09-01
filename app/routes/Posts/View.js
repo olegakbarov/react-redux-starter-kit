@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPost } from '../../actions/posts';
-import SinglePost from '../../components/SinglePost';
+import SinglePost from '../../components/SinglePost/SinglePost';
 
 @connect(state => ({
   posts: state.posts.items
@@ -21,9 +21,9 @@ export default class PostsView extends Component {
     const post = this.props.posts[this.props.params.id];
 
     return (
-      <div className="container-fluid post-wrapper">
-        <SinglePost post={post} />
-      </div>
+      post
+        ? <SinglePost post={post} />
+        : null
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { savePost, fetchPost } from '../../actions/posts';
-import PostEditor from '../../components/PostEditor';
+import PostEditor from '../../components/PostEditor/PostEditor';
 
 @connect(state => ({
   user: state.auth,
@@ -43,13 +43,11 @@ export default class PostsEdit extends React.Component {
     }
 
     return (
-      <div className="editor-wrapper">
-        <PostEditor
-          post={post}
-          onSave={this.handleSave}
-          onPublish={this.handlePublish}
-        />
-      </div>
+      <PostEditor
+        post={post}
+        onSave={this.handleSave}
+        onPublish={this.handlePublish}
+      />
     );
   }
 }

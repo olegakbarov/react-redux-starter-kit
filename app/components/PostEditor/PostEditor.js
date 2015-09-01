@@ -1,6 +1,11 @@
+import './../../global.styl';
+import styles from './styles.styl';
+
 import React, { PropTypes } from 'react';
 import marked from 'marked';
+import CSSModules from 'react-css-modules';
 
+@CSSModules(styles)
 export default class PostEditor extends React.Component {
   static propTypes = {
     onPublish: PropTypes.func.isRequired,
@@ -43,43 +48,39 @@ export default class PostEditor extends React.Component {
     const { title, content } = this.state.post;
 
     return (
-      <div className="row">
-        <div className="col-sm-6">
-          <div className="form-group">
-            <input
-              className="form-control"
-              value={title}
-              onChange={this.handleChange('title')}
-              type="text"
-              placeholder="Post title"
-            />
-          </div>
+      <div styleName="wrapper">
+        <div styleName="editor-container">
+          <input
+            styleName="input-title"
+            value={title}
+            onChange={this.handleChange('title')}
+            type="text"
+            placeholder="Post title"
+          />
 
-          <div className="form-group">
-            <textarea
-              className="post-contents form-control"
-              onChange={this.handleChange('content')}
-              value={content}
-              placeholder="Content goes here"
-              rows="20"
-            />
-          </div>
+          <textarea
+            styleName="input-text"
+            onChange={this.handleChange('content')}
+            value={content}
+            placeholder="Content goes here"
+            rows="20"
+          />
 
-          <div className="form-group text-right">
+          <div styleName="btn-container">
             <button
-              className="btn btn-lg btn-primary margin-left-15"
+              styleName="btn"
               onClick={this.handleSave}
             >Save</button>
 
             <button
-              className="btn btn-lg btn-success margin-left-15"
+              styleName="btn"
               onClick={this.handlePublish}
             >Publish</button>
           </div>
         </div>
 
-        <div className="col-sm-6">
-          <h1>{title}</h1>
+        <div styleName="post-container">
+          <div styleName="title">{title}</div>
 
           <div
             dangerouslySetInnerHTML={{

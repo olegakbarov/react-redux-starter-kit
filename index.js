@@ -1,6 +1,6 @@
 /* eslint-env node */
 import webpack from 'webpack';
-import config from './webpack.config';
+import config from './webpack.config.babel';
 import browserSync from 'browser-sync';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -42,7 +42,7 @@ browserSync({
   },
 
   files: [
-    '/app/css/*.css',
+    '/public/css/*.css',
     '/app/*.html'
   ]
 });

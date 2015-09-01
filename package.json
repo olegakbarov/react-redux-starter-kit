@@ -39,7 +39,7 @@
     "react-mixin": "^1.4.0",
     "react-modal": "^0.2.0",
     "react-redux": "^0.5.0",
-    "react-router": "^1.0.0-beta2",
+    "react-router": "^1.0.0-beta3",
     "redux": "^1.0.0-rc",
     "redux-logger": "^1.0.5",
     "redux-thunk": "^0.1.0"
@@ -63,6 +63,7 @@
     "normalize.css": "^3.0.3",
     "postcss-import": "^6.0.0",
     "postcss-loader": "^0.6.0",
+    "react-css-modules": "^3.0.2",
     "react-hot-loader": "^1.2.7",
     "redux-devtools": "^1.0.0",
     "style-loader": "^0.12.3",

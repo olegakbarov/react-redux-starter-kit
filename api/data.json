@@ -425,8 +425,8 @@
     },
     {
       "id": 4,
-      "email": "shaffernunez@nimon.com",
-      "password": "ad",
+      "email": "email@adress",
+      "password": "pass",
       "firstname": "Frank",
       "lastname": "Sinatra"
     },

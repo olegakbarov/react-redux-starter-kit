@@ -3,7 +3,7 @@ import '../global.styl';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import { fetchProfile, logout } from '../actions/auth';
 
 @connect(state => ({
