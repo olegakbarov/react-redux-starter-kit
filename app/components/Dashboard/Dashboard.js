@@ -9,8 +9,7 @@ import CSSModules from 'react-css-modules';
 export default class Dashboard extends React.Component {
   static propTypes = {
     publishedPosts: PropTypes.array.isRequired,
-    savePost: PropTypes.func.isRequired,
-    togglePublishPost: PropTypes.array.isRequired,
+    togglePublishPost: PropTypes.func.isRequired,
     unpublishedPosts: PropTypes.array.isRequired
   }
 
