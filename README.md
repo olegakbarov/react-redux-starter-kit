@@ -1,20 +1,22 @@
 # redux-blog-example
 
-Skeleton for publishing platform with React, Redux, React-Router, Eslint and Webpack.
+Full-featured example for publishing platform with [React](https://github.com/facebook/react), [Redux](https://github.com/rackt/redux), [react-router](https://github.com/rackt/react-router), [Eslint](https://github.com/eslint/eslint) and [Webpack](https://github.com/webpack/webpack).
 
 - Server-side rendering
-- Routes
-- Token-based authorization
-- Markdown editor of posts
+- Token-based authorization with [JWT](https://github.com/auth0/node-jsonwebtoken)
+- Markdown editor of posts with [marked](https://github.com/chjj/marked)
+- Modular CSS with [react-css-modules](https://github.com/gajus/react-css-modules)
 - API mock with JSON server
 
 ### Up & running
 
 `$ npm install` the dependencies
 
-`$ npm start` this starts `jsonServer` as well as app itself
+`$ npm run start` this starts app
 
-`$ gulp build` bundles up the project
+`$ npm run dev` runs development server with hot reload
+
+`$ webpack -p` bundles up the project
 
 ### How it works
 
