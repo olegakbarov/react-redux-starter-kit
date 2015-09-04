@@ -26,7 +26,7 @@ export default class Dashboard extends React.Component {
 
         <td>
           <Link
-            to={`/dashboard/add/${post.id}`}
+            to={`/dashboard/edit/${post.id}`}
             styleName="clickable"
           >Edit</Link>
         </td>
@@ -47,7 +47,7 @@ export default class Dashboard extends React.Component {
         <td>{post.title}</td>
 
         <td>
-          <Link to={`/dashboard/add/${post.id}`}>
+          <Link to={`/dashboard/edit/${post.id}`}>
           <div
             styleName="clickable"
             >

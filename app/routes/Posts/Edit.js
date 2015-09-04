@@ -18,7 +18,9 @@ export default class PostsEdit extends React.Component {
   }
 
   static fillStore(redux, props) {
-    return redux.dispatch(fetchPost(props.params.id));
+    if (props.params.id) {
+      return redux.dispatch(fetchPost(props.params.id));
+    }
   }
 
   handleSave = (post) => {

@@ -21,7 +21,7 @@ const routes = (
       <Route path="/profile" component={ProfileRoute} />
       <Route path="/dashboard" component={DashboardRoute} />
       <Route path="/dashboard/add" component={Posts.Edit} />
-      <Route path="/dashboard/add/:id" component={Posts.Edit} />
+      <Route path="/dashboard/edit/:id" component={Posts.Edit} />
     </Route>
 
     <Route path="*" component={NotFound} />
