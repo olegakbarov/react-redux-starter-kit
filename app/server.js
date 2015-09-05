@@ -13,6 +13,7 @@ import { createRedux } from './utils/redux';
 import fillStore from './utils/fillStore';
 import stringifyLocation from './utils/stringifyLocation';
 
+const env = process.env.NODE_ENV || 'development';
 const app = express();
 
 app.use(cookieParser());
@@ -50,7 +51,7 @@ app.use((req, res, next) => {
       res.status(404);
     }
 
-    res.send(template({ html, initialState }));
+    res.send(template({ html, initialState, env }));
   });
 });
 

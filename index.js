@@ -8,6 +8,7 @@ import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
 
+const env = process.env.NODE_ENV || 'development';
 const bundler = webpack(config);
 
 browserSync({
@@ -33,7 +34,7 @@ browserSync({
 
           const template = _.template(source);
 
-          res.write(template({ html: '', initialState: 'undefined' }));
+          res.write(template({ html: '', initialState: 'undefined', env }));
           res.end();
         });
       }
@@ -42,7 +43,6 @@ browserSync({
   },
 
   files: [
-    '/public/css/*.css',
-    '/app/*.html'
+    'app/template.html'
   ]
 });

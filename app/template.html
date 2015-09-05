@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>Redux blog (⌒‿⌒)</title>
-  <link rel="stylesheet" href="css/main.css">
+
+  <% if (env === 'production') { %>
+    <link rel="stylesheet" href="css/main.css">
+  <% } %>
 </head>
 
 <body>
