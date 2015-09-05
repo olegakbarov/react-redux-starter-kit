@@ -1,5 +1,6 @@
 {
   "main": "app/server",
+  "license": "MIT",
   "author": {
     "name": "Oleg Akbarov",
     "email": "olegakbarov@gmail.com",
