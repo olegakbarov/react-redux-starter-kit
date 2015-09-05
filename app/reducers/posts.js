@@ -4,31 +4,26 @@ import {
   SAVE_POST_SUCCESS
 } from '../constants/actions';
 
-function getInitialListState() {
-  return { list: [], items: {} };
-}
-
-function storeList(itemList) {
-  const list = itemList.map(item => item.id);
-  const items = {};
-
-  itemList.forEach(post => { items[post.id] = post; });
-
-  return { list, items };
-}
-
-function storeItem({ list, items }, item) {
-  return { items: { ...items, [item.id]: item }, list };
-}
-
-export default (state = getInitialListState(), action) => {
+export default (state = { list: [], items: {} }, action) => {
   switch (action.type) {
     case FETCH_POSTS_SUCCESS:
-      return storeList(action.posts);
+      const list = action.posts.map(item => item.id);
+      const items = {};
+
+      action.posts.forEach(post => { items[post.id] = post; });
+
+      return { list, items };
 
     case SAVE_POST_SUCCESS:
     case FETCH_POST_SUCCESS:
-      return storeItem(state, action.post);
+      return {
+        items: {
+          ...state.items,
+          [action.post.id]: action.post
+        },
+
+        list: state.list
+      };
 
     default:
       return state;

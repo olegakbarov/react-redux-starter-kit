@@ -1,12 +1,12 @@
+/* eslint-env commonjs */
 /* global process */
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { ROUTER_STATE_CHANGE } from '../constants/actions';
-import * as reducers from '../reducers';
+import reducer from '../reducers';
 
 export function createRedux(initialState) {
-  const reducer = combineReducers(reducers);
   const middleware = [thunk];
 
   if (process.env.NODE_ENV !== 'production') {
@@ -17,6 +17,13 @@ export function createRedux(initialState) {
   }
 
   const finalCreateStore = applyMiddleware(...middleware)(createStore);
+  const store = finalCreateStore(reducer, initialState);
 
-  return finalCreateStore(reducer, initialState);
+  if (module.hot) {
+    const nextReducer = require('../reducers');
+    module.hot.accept('../reducers',
+      () => { store.replaceReducer(nextReducer); });
+  }
+
+  return store;
 }
