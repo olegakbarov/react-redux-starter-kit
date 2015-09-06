@@ -22,7 +22,7 @@
     "prepush": "npm test",
     "prestart": "webpack",
     "start": "NODE_ENV=production babel-node ./api & NODE_ENV=production babel-node .",
-    "dev": "nodemon -x babel-node -w ./api ./api & babel-node ./index.js",
+    "dev": "nodemon -x babel-node -w ./api ./api & babel-node ./dev-server",
     "test": "eslint api app"
   },
   "dependencies": {
