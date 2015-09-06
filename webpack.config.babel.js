@@ -1,8 +1,7 @@
 /* eslint-env node */
 import webpack from 'webpack';
 import path from 'path';
-import autoprefixer from 'autoprefixer';
-import csswring from 'csswring';
+import cssnext from 'cssnext';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const env = process.env.NODE_ENV || 'development';
@@ -39,7 +38,7 @@ const cfg = {
   },
 
   postcss: () => {
-    return [autoprefixer, csswring];
+    return [cssnext];
   }
 };
 
