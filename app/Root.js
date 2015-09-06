@@ -1,6 +1,5 @@
 /* eslint-env browser */
 /* global process */
-
 import React from 'react';
 import { Router } from 'react-router';
 import { Provider } from 'react-redux';
@@ -20,18 +19,16 @@ export default class Root extends React.Component {
 
   render() {
     return (
-      <div>
-        <Provider store={store}>{() => (
-          <Router
-            history={this.props.history}
-            routes={routes(store, true)}
+      <Provider store={store}>{() => (
+        <Router
+          history={this.props.history}
+          routes={routes(store, true)}
 
-            onUpdate={function() {
-              store.dispatch(routerStateChange(this.state));
-            }}
-          />
-        )}</Provider>
-      </div>
+          onUpdate={function() {
+            store.dispatch(routerStateChange(this.state));
+          }}
+        />
+      )}</Provider>
     );
   }
 }

@@ -5,16 +5,11 @@ import cssnext from 'cssnext';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const env = process.env.NODE_ENV || 'development';
+const bundle = process.env.BUNDLE || 'client';
 
 const cfg = {
   context: path.join(__dirname, 'app'),
-  entry: ['./client'],
-
-  output: {
-    path: path.join(__dirname, 'public'),
-    publicPath: '/',
-    filename: 'js/app.js'
-  },
+  entry: ['./' + bundle],
 
   plugins: [
     new webpack.DefinePlugin({
@@ -25,16 +20,10 @@ const cfg = {
   ],
 
   module: {
-    loaders: [
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      },
-      {
-        test: /\.styl$/,
-        loader: 'style-loader!css-loader?modules!stylus-loader'
-      }
-    ]
+    loaders: [{
+      test: /\.json$/,
+      loader: 'json'
+    }]
   },
 
   postcss: () => {
@@ -46,25 +35,66 @@ const jsLoader = {
   test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel']
 };
 
-const hotCssLoader = {
-  test: /\.styl$/,
-  loader: ExtractTextPlugin(
-    'css-loader?modules&importLoaders=1&' +
-    'localIdentName=[name]__[local]___[hash:base64:5]' +
-    '!postcss-loader!stylus-loader'
-  )
-};
+if (bundle === 'server') {
+  cfg.target = 'node';
 
-if (env === 'production') {
-  cfg.plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      output: { comments: false }
-    }),
-    new ExtractTextPlugin('css/[name].css')
-  );
+  cfg.node = {
+    __filename: false,
+    __dirname: false,
+    console: false
+  };
 
-  cfg.plugins.loaders.push(hotCssLoader);
+  cfg.output = {
+    path: path.join(__dirname, 'public'),
+    publicPath: '/',
+    filename: '../app/server-bundle.js'
+  };
+
+  cfg.module.loaders.push({
+    test: /\.styl$/,
+    loader: 'css/locals?modules!stylus'
+  });
 } else {
+  cfg.target = 'web';
+
+  cfg.output = {
+    path: path.join(__dirname, 'public'),
+    publicPath: '/',
+    filename: 'js/app.js'
+  };
+
+  if (env === 'production') {
+    cfg.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        output: { comments: false }
+      }),
+
+      new ExtractTextPlugin('css/[name].css')
+    );
+
+    cfg.module.loaders.push({
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract('style', 'css')
+    }, {
+      test: /\.styl$/,
+      loader: ExtractTextPlugin.extract(
+        'style',
+        'css?modules!stylus'
+      )
+    });
+  } else {
+    cfg.module.loaders.push({
+      test: /\.css$/,
+      loader: 'style!css'
+    }, {
+      test: /\.styl$/,
+      loader:
+        'style!css?modules&localIdentName=[local]___[hash:base64:10]!stylus'
+    });
+  }
+}
+
+if (env !== 'production') {
   cfg.debug = true;
   cfg.devtool = '#eval-source-map';
 

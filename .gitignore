@@ -1,4 +1,4 @@
-/public/css/
-/public/js/
+/public/
+/app/server-bundle.js
 node_modules
 *.log
