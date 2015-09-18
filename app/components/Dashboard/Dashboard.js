@@ -1,4 +1,4 @@
-import './../../styles/global.styl';
+import '../../styles/global.styl';
 import styles from './styles.styl';
 
 import React, { PropTypes } from 'react';
