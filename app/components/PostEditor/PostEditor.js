@@ -13,16 +13,16 @@ export default class PostEditor extends React.Component {
     post: PropTypes.object
   }
 
+  state = {
+    post: { ...this.props.post }
+  }
+
   componentWillReceiveProps(newProps) {
     this.setState({
       post: {
         ...newProps.post
       }
     });
-  }
-
-  state = {
-    post: { ...this.props.post }
   }
 
   handleSave = (e) => {

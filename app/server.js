@@ -1,4 +1,5 @@
 /* eslint-env node */
+import 'babel/polyfill';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import _ from 'lodash';
