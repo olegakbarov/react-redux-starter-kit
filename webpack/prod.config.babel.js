@@ -31,8 +31,7 @@ const cfg = {
     loaders: [
       { test: /\.json$/, loader: 'json' },
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel'] },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
-      { test: /\.styl$/, loader: ExtractTextPlugin.extract('style', 'css?modules!stylus') } // eslint-disable-line
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') }
     ]
   },
 
@@ -62,6 +61,11 @@ if (bundle === 'server') {
   });
 } else {
   cfg.target = 'web';
+
+  cfg.module.loaders.push({
+    test: /\.styl$/,
+    loader: ExtractTextPlugin.extract('style', 'css?modules!stylus')
+  });
 
   cfg.output = {
     path: path.join(__dirname, '../public'),
