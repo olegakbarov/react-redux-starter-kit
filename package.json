@@ -24,7 +24,7 @@
     "build:server": "BUNDLE=server NODE_ENV=production webpack --config ./webpack/prod.config.babel.js",
     "build:client": "BUNDLE=client NODE_ENV=production webpack --config ./webpack/prod.config.babel.js",
     "build": "npm run build:server && npm run build:client",
-    "start": "NODE_ENV=production babel-node ./api & babel-node .",
+    "start": "NODE_ENV=production babel-node ./api & node .",
     "dev": "nodemon -x babel-node -w ./api ./api & babel-node ./dev-server",
     "test": "eslint api app"
   },
@@ -63,7 +63,7 @@
     "eslint": "^1.0.0",
     "eslint-plugin-react": "^3.1.0",
     "extract-text-webpack-plugin": "^0.8.2",
-    "husky": "^0.10.1"  ,
+    "husky": "^0.10.1",
     "json-loader": "^0.5.2",
     "node-libs-browser": "^0.5.2",
     "nodemon": "^1.4.1",
