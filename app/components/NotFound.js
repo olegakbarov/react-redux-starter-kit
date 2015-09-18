@@ -1,4 +1,4 @@
-import styles from './../global.styl';
+import styles from './../styles/global.styl';
 import React from 'react';
 import CSSModules from 'react-css-modules';
 
