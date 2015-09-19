@@ -1,6 +1,7 @@
 /* eslint-env node */
 import webpack from 'webpack';
-import config from './webpack.config.babel';
+import devConfig from './webpack/dev.config.babel';
+import prodConfig from './webpack/prod.config.babel';
 import browserSync from 'browser-sync';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -9,6 +10,7 @@ import path from 'path';
 import _ from 'lodash';
 
 const env = process.env.NODE_ENV || 'development';
+const config = env === 'development' ? devConfig : prodConfig;
 const bundler = webpack(config);
 
 browserSync({
