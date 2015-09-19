@@ -1,4 +1,4 @@
-import '../global.styl';
+import '../styles/global.styl';
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
