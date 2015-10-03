@@ -24,7 +24,7 @@
     "build:server": "BUNDLE=server NODE_ENV=production webpack --config ./webpack/prod.config.babel.js",
     "build:client": "BUNDLE=client NODE_ENV=production webpack --config ./webpack/prod.config.babel.js",
     "build": "npm run build:server && npm run build:client",
-    "start": "NODE_ENV=production babel-node ./api & node .",
+    "start": "NODE_ENV=production node ./api & node .",
     "dev": "nodemon -x babel-node -w ./api ./api & babel-node ./dev-server",
     "test": "eslint api app"
   },
