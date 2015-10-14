@@ -23,9 +23,9 @@
     "clean": "rm -rf public app/server-bundle.js",
     "build:server": "BUNDLE=server NODE_ENV=production webpack --config ./webpack/prod.config.babel.js",
     "build:client": "BUNDLE=client NODE_ENV=production webpack --config ./webpack/prod.config.babel.js",
-    "build": "npm run build:server && npm run build:client",
-    "start": "NODE_ENV=production babel-node ./api & node .",
-    "dev": "nodemon -x babel-node -w ./api ./api & babel-node ./dev-server",
+    "build": "npm run build:server & npm run build:client & wait",
+    "start": "NODE_ENV=production babel-node ./api & node . & wait",
+    "dev": "nodemon -x babel-node -w ./api ./api & babel-node ./dev-server & wait",
     "test": "eslint api app"
   },
   "dependencies": {
