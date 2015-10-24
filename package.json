@@ -18,15 +18,14 @@
     "url": "git@github.com:GetExpert/redux-blog-example.git"
   },
   "scripts": {
-    "precommit": "npm test",
-    "prepush": "npm test",
     "clean": "rm -rf public app/server-bundle.js",
     "build:server": "BUNDLE=server NODE_ENV=production webpack --config ./webpack/prod.config.babel.js",
     "build:client": "BUNDLE=client NODE_ENV=production webpack --config ./webpack/prod.config.babel.js",
     "build": "npm run build:server & npm run build:client & wait",
     "start": "NODE_ENV=production babel-node ./api & node . & wait",
     "dev": "nodemon -x babel-node -w ./api ./api & babel-node ./dev-server & wait",
-    "test": "eslint api app"
+    "pretest": "eslint api app webpack dev-server.js",
+    "test": "echo THERE ARE NO TESTS YET"
   },
   "dependencies": {
     "axios": "^0.5.4",
@@ -62,7 +61,6 @@
     "eslint": "^1.0.0",
     "eslint-plugin-react": "^3.1.0",
     "extract-text-webpack-plugin": "^0.8.2",
-    "husky": "^0.10.1",
     "json-loader": "^0.5.2",
     "node-libs-browser": "^0.5.2",
     "nodemon": "^1.4.1",
