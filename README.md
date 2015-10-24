@@ -23,7 +23,7 @@ npm install
 
 ### Production
 ```bash
-npm run build # build assets and server
+make # build assets and server
 npm start # start the server
 ```
 
@@ -31,7 +31,7 @@ Open [http://localhost:3000/](http://localhost:3000/) in the browser.
 
 ### Development
 ```bash
-npm run dev # start development server with hot reloading
+make dev # start development server with hot reloading
 ```
 
 It will automatically open your default browser with project loaded.
