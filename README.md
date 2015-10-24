@@ -1,5 +1,7 @@
 # Redux Blog Example
 
+[![Travis](https://img.shields.io/travis/GetExpert/redux-blog-example.svg)](https://travis-ci.org/GetExpert/redux-blog-example)
+
 Full-featured example of publishing platform built with
 [React](http://facebook.github.io/react/),
 [Redux](http://rackt.github.io/redux/),
