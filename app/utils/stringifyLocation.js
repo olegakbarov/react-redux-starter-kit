@@ -5,4 +5,3 @@ export default function stringifyLocation(location) {
 
   return `${location.pathname}${query && `?${query}`}`;
 }
-
