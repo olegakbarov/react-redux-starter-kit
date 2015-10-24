@@ -1,21 +1,26 @@
+NB = ./node_modules/.bin
+ESLINT = $(NB)/eslint
+WEBPACK = $(NB)/webpack
+BABEL_NODE = $(NB)/babel-node
+NODEMON = $(NB)/nodemon
 CLIENT = public
 SERVER = app/server-bundle.js
 
 build: $(CLIENT) $(SERVER)
 
 $(CLIENT):
-	BUNDLE=client NODE_ENV=production webpack --config ./webpack/prod.config.babel.js
+	BUNDLE=client NODE_ENV=production $(WEBPACK) --config ./webpack/prod.config.babel.js
 
 $(SERVER):
-	BUNDLE=server NODE_ENV=production webpack --config ./webpack/prod.config.babel.js
+	BUNDLE=server NODE_ENV=production $(WEBPACK) --config ./webpack/prod.config.babel.js
 
 dev:
-	nodemon -x babel-node -w ./api ./api & \
-	babel-node ./dev-server & \
+	$(NODEMON) -x $(BABEL_NODE) -w ./api ./api & \
+	$(BABEL_NODE) ./dev-server & \
 	wait
 
 lint:
-	eslint api app
+	$(ESLINT) api app
 
 test:
 	echo THERE ARE NO TESTS YET
