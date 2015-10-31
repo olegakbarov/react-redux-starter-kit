@@ -1,5 +1,7 @@
 # Redux Blog Example
 
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/GetExpert/redux-blog-example.svg)](http://isitmaintained.com/project/GetExpert/redux-blog-example "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/GetExpert/redux-blog-example.svg)](http://isitmaintained.com/project/GetExpert/redux-blog-example "Percentage of issues still open")
 [![Travis](https://img.shields.io/travis/GetExpert/redux-blog-example.svg)](https://travis-ci.org/GetExpert/redux-blog-example)
 
 Full-featured example of publishing platform built with
