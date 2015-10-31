@@ -3,11 +3,14 @@ import webpack from 'webpack';
 import path from 'path';
 import cssnext from 'cssnext';
 
+const bundle = process.env.BUNDLE || 'client';
 const env = process.env.NODE_ENV || 'development';
 
 module.exports = {
   debug: true,
-  devtool:  '#eval-source-map',
+  devtool: bundle === 'server'
+    ? 'source-map'
+    : 'eval-cheap-module-source-map',
   context: path.join(__dirname, '../app'),
   entry: [
     '../app/client',
@@ -22,8 +25,7 @@ module.exports = {
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: JSON.stringify(env) },
-      __DEVTOOLS__: process.env.DEVTOOLS === 'true' ? true : false // eslint-disable-line
+      'process.env': { NODE_ENV: JSON.stringify(env) }
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),

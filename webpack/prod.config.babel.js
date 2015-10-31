@@ -7,6 +7,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 const bundle = process.env.BUNDLE || 'client';
 
 const cfg = {
+  devtool: 'source-map',
   context: path.join(__dirname, '../app'),
   entry: ['./' + bundle],
 
@@ -16,13 +17,11 @@ const cfg = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
-      },
-      __DEVTOOLS__: false
+      }
     }),
     new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
+      compressor: { screw_ie8: true },
+      output: { comments: false }
     }),
     new ExtractTextPlugin('css/[name].css', { allChunks: true })
   ],
