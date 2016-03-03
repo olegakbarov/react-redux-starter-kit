@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 
     const html = React.renderToString(
       <Provider store={store}>
-        {() => <Router {...state} />}
+        <Router {...state} />
       </Provider>
     );
 
