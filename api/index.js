@@ -30,7 +30,7 @@ app.use(jwt({
 function generateToken(email, password) {
   const payload = { email, password };
   return jwtToken.sign(payload, config.token.secret, {
-    expiresInMinutes: config.token.expires
+    expiresIn: config.token.expires
   });
 }
 
