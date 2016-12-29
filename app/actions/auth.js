@@ -1,4 +1,11 @@
-import {
+
+import Actions from '../constants/actions';
+import cookie from '../utils/cookie';
+import redirectBackAfter from '../utils/redirectBackAfter';
+import axios from 'axios';
+import getHeaders from '../utils/getHeaders.js';
+
+const {
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
 
@@ -13,12 +20,7 @@ import {
   SAVE_PROFILE,
   SAVE_PROFILE_SUCCESS,
   SAVE_PROFILE_FAILURE
-} from '../constants/actions';
-
-import cookie from '../utils/cookie';
-import redirectBackAfter from '../utils/redirectBackAfter';
-import axios from 'axios';
-import getHeaders from '../utils/getHeaders.js';
+} = Actions;
 
 const baseUrl = 'http://localhost:1337';
 

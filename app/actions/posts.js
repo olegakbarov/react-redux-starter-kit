@@ -1,4 +1,8 @@
-import {
+import Actions from '../constants/actions';
+import axios from 'axios';
+import getHeaders from '../utils/getHeaders';
+
+const {
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_FAILURE,
 
@@ -7,10 +11,7 @@ import {
 
   SAVE_POST_SUCCESS,
   SAVE_POST_FAILURE
-} from '../constants/actions';
-
-import axios from 'axios';
-import getHeaders from '../utils/getHeaders';
+} = Actions;
 
 const baseUrl = 'http://localhost:1337';
 
