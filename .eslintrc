@@ -1,6 +1,9 @@
 root: true
 extends: 'eslint:recommended'
 
+env:
+  es6: true
+
 parser: babel-eslint
 
 plugins:
@@ -44,6 +47,10 @@ rules:
     - 2
     - SwitchCase: 1
 
+  jsx-quotes:
+    - 2
+    - prefer-double
+
   linebreak-style:
     - 2
     - unix
@@ -68,6 +75,7 @@ rules:
     - 2
     - 15
 
+  no-case-declarations: 0
   no-lonely-if: 2
 
   no-multiple-empty-lines:
@@ -108,7 +116,10 @@ rules:
 
   semi: 2
 
-  space-after-keywords: 2
+  keyword-spacing:
+    - 2
+    - after: true
+
   space-before-blocks: 2
   space-before-function-paren:
     - 2
@@ -122,10 +133,7 @@ rules:
 
   wrap-regex: 2
 
-  react/display-name:
-    - 2
-    - acceptTranspilerName: true
-
+  react/display-name: 2
   react/jsx-boolean-value: 2
   react/jsx-curly-spacing: 2
 
@@ -134,23 +142,10 @@ rules:
     - ignoreCase: true
 
   react/jsx-no-undef: 2
-
-  react/jsx-quotes:
-    - 2
-    - double
-    - avoid-escape
-
-  react/jsx-sort-prop-types: 2
-  react/jsx-uses-react:
-    - 2
-    - ignoreCase: true
-
+  react/sort-prop-types: 2
+  react/jsx-uses-react: 2
   react/jsx-uses-vars: 2
-
-  react/no-did-mount-set-state:
-    - 2
-    - allow-in-func
-
+  react/no-did-mount-set-state: 2
   react/no-did-update-set-state: 2
   react/no-multi-comp: 2
   react/no-unknown-property: 2
