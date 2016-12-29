@@ -1,7 +1,7 @@
 /* eslint-env node */
-import webpack from 'webpack';
-import path from 'path';
-import cssnext from 'cssnext';
+const webpack = require('webpack');
+const path = require('path');
+const cssnext = require('cssnext');
 
 const bundle = process.env.BUNDLE || 'client';
 const env = process.env.NODE_ENV || 'development';
@@ -41,7 +41,11 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel']
+        loader: 'babel',
+        query: {
+          plugins: ['transform-decorators-legacy'],
+          presets: ['es2015', 'react', 'stage-0']
+        }
       },
       {
         test: /\.css$/,
