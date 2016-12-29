@@ -22,23 +22,24 @@ export default class Header extends React.Component {
   }
 
   renderNavBar() {
-    const { loggedIn } = this.props;
+    const { loggedIn, router } = this.props;
+    const isActive = router.isActive.bind(router);
 
     if (loggedIn) {
       return (
         <ul styleName="nav">
-          <NavItem to="/">Blog</NavItem>
-          <NavItem to="/dashboard">Dashboard</NavItem>
-          <NavItem to="/profile">Profile</NavItem>
-          <NavItem to="/logout" onClick={this.handleLogout}>Logout</NavItem>
+          <NavItem to="/" active={isActive("/")}>Blog</NavItem>
+          <NavItem to="/dashboard" active={isActive("/dashboard")}>Dashboard</NavItem>
+          <NavItem to="/profile" active={isActive("/profile")}>Profile</NavItem>
+          <NavItem to="/logout" active={isActive("/logout")} onClick={this.handleLogout}>Logout</NavItem>
         </ul>
       );
     } else {
       return (
         <ul styleName="nav">
-          <NavItem to="/">Blog</NavItem>
-          <NavItem to="/signup">Sign up</NavItem>
-          <NavItem to="/login">Login</NavItem>
+          <NavItem to="/" active={isActive("/")}>Blog</NavItem>
+          <NavItem to="/signup" active={isActive("/signup")}>Sign up</NavItem>
+          <NavItem to="/login" active={isActive("/login")}>Login</NavItem>
         </ul>
       );
     }

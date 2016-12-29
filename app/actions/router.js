@@ -1,6 +1,7 @@
-import {
+import Actions from '../constants/actions';
+const {
   ROUTER_STATE_CHANGE
-} from '../constants/actions';
+} = Actions;
 
 export function routerStateChange(state) {
   return {
