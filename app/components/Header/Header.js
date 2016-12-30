@@ -24,25 +24,37 @@ export default class Header extends React.Component {
   renderNavBar() {
     const { loggedIn, router } = this.props;
     const isActive = router.isActive.bind(router);
+    let navItems;
 
     if (loggedIn) {
-      return (
-        <ul styleName="nav">
-          <NavItem to="/" active={isActive("/")}>Blog</NavItem>
-          <NavItem to="/dashboard" active={isActive("/dashboard")}>Dashboard</NavItem>
-          <NavItem to="/profile" active={isActive("/profile")}>Profile</NavItem>
-          <NavItem to="/logout" active={isActive("/logout")} onClick={this.handleLogout}>Logout</NavItem>
-        </ul>
-      );
+      navItems = [
+        { to: '/', title: 'Blog' },
+        { to: '/dashboard', title: 'Dashboard' },
+        { to: '/profile', title: 'Profile' },
+        { to: '/logout', title: 'Logout', onClick: this.handleLogout }
+      ];
     } else {
-      return (
-        <ul styleName="nav">
-          <NavItem to="/" active={isActive("/")}>Blog</NavItem>
-          <NavItem to="/signup" active={isActive("/signup")}>Sign up</NavItem>
-          <NavItem to="/login" active={isActive("/login")}>Login</NavItem>
-        </ul>
-      );
+      navItems = [
+        { to: '/', title: 'Blog' },
+        { to: '/signup', title: 'Sign up' },
+        { to: '/login', title: 'Login' }
+      ];
     }
+    navItems = navItems.map((props) =>
+      <NavItem
+        key={props.to}
+        to={props.to}
+        active={isActive(props.to)}
+        onClick={props.onClick}
+      >
+        {props.title}
+      </NavItem>
+    );
+    return (
+      <ul styleName="nav">
+        {navItems}
+      </ul>
+    );
   }
 
   render() {
