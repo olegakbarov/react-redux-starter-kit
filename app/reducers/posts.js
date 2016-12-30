@@ -1,8 +1,10 @@
-import {
+
+import Actions from '../constants/actions';
+const {
   FETCH_POSTS_SUCCESS,
   FETCH_POST_SUCCESS,
   SAVE_POST_SUCCESS
-} from '../constants/actions';
+} = Actions;
 
 export default (state = { list: [], items: {} }, action) => {
   switch (action.type) {

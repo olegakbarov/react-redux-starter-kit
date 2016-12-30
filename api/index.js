@@ -12,7 +12,7 @@ import _ from 'lodash';
 const jsonPath = path.join(__dirname, 'data.json');
 const app = express();
 
-app.use(jsonServer.defaults);
+app.use(jsonServer.defaults());
 app.use(bodyParser.json());
 app.use(jwt({
   secret: config.token.secret
@@ -30,7 +30,7 @@ app.use(jwt({
 function generateToken(email, password) {
   const payload = { email, password };
   return jwtToken.sign(payload, config.token.secret, {
-    expiresInMinutes: config.token.expires
+    expiresIn: config.token.expires
   });
 }
 

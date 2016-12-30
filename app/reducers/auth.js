@@ -1,4 +1,6 @@
-import {
+
+import Actions from '../constants/actions';
+const {
   ROUTER_STATE_CHANGE,
 
   LOGIN_SUCCESS,
@@ -11,7 +13,7 @@ import {
   SAVE_PROFILE,
   SAVE_PROFILE_SUCCESS,
   FETCH_PROFILE_SUCCESS
-} from '../constants/actions';
+} = Actions;
 
 const initialState = {
   error: null, // last occured error

@@ -1,8 +1,8 @@
 /* eslint-env node */
-import webpack from 'webpack';
-import path from 'path';
-import cssnext from 'cssnext';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+const webpack = require('webpack');
+const path = require('path');
+const cssnext = require('cssnext');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const bundle = process.env.BUNDLE || 'client';
 
@@ -28,9 +28,23 @@ const cfg = {
 
   module: {
     loaders: [
-      { test: /\.json$/, loader: 'json' },
-      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel'] },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') }
+      {
+        test: /\.json$/,
+        loader: 'json'
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          plugins: ['transform-decorators-legacy'],
+          presets: ['es2015', 'react', 'stage-0']
+        }
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style', 'css')
+      }
     ]
   },
 

@@ -1,13 +1,12 @@
 /* eslint-env node */
-import 'babel/polyfill';
+import 'babel-polyfill';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import _ from 'lodash';
 import path from 'path';
 import fs from 'fs';
 import React from 'react';
-import { Router } from 'react-router';
-import Location from 'react-router/lib/Location';
+import { Router, Location } from 'react-router';
 import { Provider } from 'react-redux';
 import routes from './routes';
 import { createRedux } from './utils/redux';

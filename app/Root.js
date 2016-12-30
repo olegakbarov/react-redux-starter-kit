@@ -19,7 +19,7 @@ export default class Root extends React.Component {
 
   render() {
     return (
-      <Provider store={store}>{() => (
+      <Provider store={store}>
         <Router
           history={this.props.history}
           routes={routes(store, true)}
@@ -28,7 +28,7 @@ export default class Root extends React.Component {
             store.dispatch(routerStateChange(this.state));
           }}
         />
-      )}</Provider>
+      </Provider>
     );
   }
 }

@@ -29,6 +29,7 @@ export default class SignupRoute extends React.Component {
         <Signup
           auth={this.props}
           handleSubmit={this.handleSubmit}
+          signup={this.props.signup}
         />
     );
   }
