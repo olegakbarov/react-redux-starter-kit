@@ -3,7 +3,6 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import * as ReactRouter from 'react-router';
 import { browserHistory, hashHistory } from 'react-router';
 import Root from './Root';
 
