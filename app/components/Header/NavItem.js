@@ -6,6 +6,7 @@ import reactMixin from 'react-mixin';
 @reactMixin.decorate(State)
 export default class NavItem extends React.Component {
   static propTypes = {
+    active: PropTypes.bool.isRequired,
     to: PropTypes.string.isRequired
   }
 
