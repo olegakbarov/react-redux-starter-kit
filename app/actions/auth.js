@@ -93,7 +93,7 @@ export function logout(router) {
 
     dispatch({ type: LOGOUT });
 
-    router.transitionTo(...redirectBackAfter('/login', router.state));
+    router.transitionTo(...redirectBackAfter('/login', router.location));
   };
 }
 

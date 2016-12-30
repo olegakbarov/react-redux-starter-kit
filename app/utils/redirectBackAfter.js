@@ -1,5 +1,5 @@
 import stringifyLocation from './stringifyLocation';
 
-export default function redirectBackAfter(path, state) {
-  return ['/login', { redirectTo: stringifyLocation(state.location) }];
+export default function redirectBackAfter(path, location) {
+  return ['/login', { redirectTo: stringifyLocation(location) }];
 }

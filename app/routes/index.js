@@ -44,7 +44,7 @@ export default (store, client) => {
       const loggedIn = !!store.getState().auth.token;
 
       if (route.requireAuth && !loggedIn) {
-        transition.to(...redirectBackAfter('/login', nextState));
+        transition.to(...redirectBackAfter('/login', nextState.location));
       } else if (client) {
         fillStore(store, nextState, [route.component]);
       }
