@@ -60,7 +60,7 @@ module.exports = [{
   externals: [nodeExternals()],
   devtool: 'source-map',
   output: {
-    path: path.join(__dirname, '..', 'src'), // for webpack middleware
+    path: dist,
     filename: 'server.js',
     libraryTarget: 'commonjs2'
   },
