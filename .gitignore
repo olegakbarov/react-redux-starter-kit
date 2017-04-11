@@ -2,3 +2,4 @@
 /app/server-bundle.js*
 node_modules
 *.log
+.env
