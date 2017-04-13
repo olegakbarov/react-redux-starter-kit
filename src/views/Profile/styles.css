@@ -1,0 +1,64 @@
+
+.wrapper {
+  width: 400px;
+  margin: 0 auto;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userpick {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  margin-bottom: 30px;
+  background-color: #fff;
+  border: 1px solid #b2b7ba;
+}
+
+.name {
+  height: 36px;
+}
+
+.buttons {
+  margin-top: 44px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  padding: 9px 17px;
+  border-radius: 4px;
+  width: 48%
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(.96);
+  transition: all .2s ease;
+}
+
+.btn {
+  focus: none;
+  outline: none;
+}
+
+.btn_save {
+  composes: btn;
+  background-color: #49b882;
+  color: #fff;
+  margin-right: 20px;
+  border: 1px solid #49b882;
+}
+
+.btn_logout {
+  composes: btn;
+  background-color: #d22f52;
+  color: #fff;
+  border: 1px solid #d22f52;
+}

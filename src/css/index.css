@@ -1,0 +1,124 @@
+@import 'normalize.css';
+
+/******************************************************************
+RESETS & STUFF
+******************************************************************/
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  letter-spacing: .02px;
+  color: #4E4D4D;
+  /*background-color: #fff;*/
+  background-color: #ecf0f1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5 {
+  margin-top: 0;
+}
+
+:global(.active_item) {
+  background-color: #EFEFEF;
+  opacity: 1;
+}
+
+:global(button) {
+  padding: 0;
+}
+
+:global(a) {
+  text-decoration: none;
+  color: inherit;
+}
+
+:global(a:visited) {
+  color: inherit;
+}
+
+::selection {
+  background: rgb(199, 218, 255);
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+textarea {
+    box-sizing : border-box;
+}
+
+/******************************************************************
+ACTUAL GLOBAL STYLES START HERE
+******************************************************************/
+
+
+:global(.app_container) {
+  width: 100%;
+  height: 100%;
+}
+
+:global(.wrapper) {
+  position: relative;
+}
+
+:global(.content) {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+:global(.dashboard-wrapper) {
+  display: flex;
+  position: relative;
+}
+
+
+/* TEXT INPUT */
+
+:global(.text_input) {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px 14px;
+  font-size: 15px;
+  line-height: 15px;
+  border: 1px solid #b2b7ba;
+  border-radius: 2px;
+}
+
+:global(.text_input:focus) {
+  outline-color: transparent;
+  outline-style: none;
+  border: 1px solid #34495e;
+}
+
+:global(.ReactModal__Content) {
+  outline: none!important;
+}
+
+
+/*
+// nice gradient
+// linear-gradient(135deg, #ca2091 0, #a041fa 20%, #3f65fb 50%, #0fcbfa 80%, #0fe6fa 100%)
+*/
+
+:global(.line) {
+  stroke: #3f65fb;
+  stroke-width: 3px;
+  fill: none;
+}
+
+:global(.column) {
+  fill: RGB(230, 237, 244);
+}

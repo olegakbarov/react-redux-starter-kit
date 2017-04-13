@@ -1,0 +1,21 @@
+
+.wrapper {
+  width: 400px;
+  margin: 150px auto 0;
+}
+
+.btn {
+  margin-top: 30px;
+  background-color: #49b882;
+  color: #fff;
+  border: 0;
+  width: 100%;
+  height: 45px;
+  border-radius: 4px;
+}
+
+.title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
